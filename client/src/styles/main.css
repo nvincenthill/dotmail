@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i');
+
+/* Global CSS variables */
+:root {
+  --mainColor: rgb(0, 190, 162);
+  --bgColor: rgb(255, 255, 255);
+  --fontColor1: rgb(34, 34, 34);
+  --fontColor2: rgb(55, 54, 74);
+  --accentColor1: rgb(28, 57, 221);
+  --accentColor2: rgb(88, 128, 244);
+  --mainFont: Helvetica, sans-serif;
+  --secFont: Source Sans Pro;
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: var(--bgColor);
+  text-align: center;
+}
+
+h1 {
+  font-family: var(--mainFont);
+}
+
+p {
+  font-family: var(--secFont);
+}
+
+.title {
+  border-bottom: 4px solid var(--mainColor);
+  padding: 1rem;
+  margin-bottom: 0;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  background: var(--bgColor);
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  background: var(--bgColor);
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  background: var(--bgColor);
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  background: var(--bgColor);
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  background: var(--bgColor);
+}

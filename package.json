@@ -1,0 +1,71 @@
+{
+  "name": "fullstackreacttemplate",
+  "version": "1.0.0",
+  "description": "fullstackreacttemplate",
+  "author": "Nicholas Vincent-Hill",
+  "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch",
+    "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "verbose": true,
+    "testMatch": [
+      "**/client/src/components/**/*.test.{js,jsx}",
+      "**/__tests__/*.{js}"
+    ],
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ],
+    "testURL": "http://localhost",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.4",
+    "npm": "^6.2.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-fontawesome": "^1.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "jest": "^23.4.2",
+    "jest-enzyme": "^6.0.2",
+    "sinon": "^6.1.4",
+    "style-loader": "^0.21.0",
+    "supertest": "^3.1.0",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.0.8"
+  }
+}
