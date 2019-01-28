@@ -1,5 +1,5 @@
 const fs = require('fs');
-const db = require('../models');
+// const db = require('../models');
 
 module.exports = {
   get: (req, res) => {
