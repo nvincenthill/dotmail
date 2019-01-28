@@ -1,6 +1,6 @@
-# MERN-Stack Template
+# Nick's email bot
 
-This is a MERN-stack template and general full stack development environment for quick MVP ideas or technical challenges.
+This is a MERN-stack app to programatically send responsively-designed emails with nodemailer + mjml templates
 
 ## Getting Started
 
@@ -57,10 +57,6 @@ Not currently deployed
 - [Enzyme](https://airbnb.io/enzyme/) - The testing utilities
 - [SuperTest](https://github.com/visionmedia/supertest/) - The http integration testing
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Versioning
 
 We use [Git](https://git-scm.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
@@ -69,12 +65,6 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 
 - **Nicholas Vincent-Hill** - [Nicholas Vincent-Hill](http://nickvh.tech/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who also participated in this project.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-- Thank you to the 99s for helping me put this together
