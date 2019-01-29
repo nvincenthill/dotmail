@@ -1,30 +1,30 @@
-const { exec } = require('child_process');
-// const fs = require('fs');
+const mjml2html = require('mjml');
+const fs = require('fs');
 
 // TODO: Implement createMJML
 const createMJML = (callback) => {
-  console.log('creating mjml...');
+  console.log('Creating MJML...');
   callback();
 };
 
-// const loadHTML = (callback) => {
-//   console.log('loadHTML');
-//   fs.readFile('./data/template.html', (err, html) => {
-//     if (err) {
-//       callback(err, null);
-//     }
-//     callback(null, html);
-//   });
-// };
-
-const transpileMJML = (callback) => {
-  console.log('transpiling MJML...');
-  exec('mjml data/template.mjml -o data/template.html --config.minify', (err) => {
+const loadTemplate = (path, callback) => {
+  console.log('Loading template...');
+  fs.readFile(path, 'utf8', (err, template) => {
     if (err) {
       callback(err, null);
-      return;
     }
-    callback(null);
+    callback(null, template);
+  });
+};
+
+const transpileMJML = (callback) => {
+  const options = {
+    minify: true,
+  };
+  loadTemplate('data/template.mjml', (err, mjml) => {
+    console.log('Transpiling to html...');
+    const htmlOutput = mjml2html(mjml, options);
+    callback(null, htmlOutput.html);
   });
 };
 
