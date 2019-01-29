@@ -34,6 +34,7 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
+    "mjml-utils": "^2.2.1",
     "mongoose": "^5.2.4",
     "nodemailer": "^5.1.1",
     "npm": "^6.2.0",
