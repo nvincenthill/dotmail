@@ -1,14 +1,13 @@
 const mjml2html = require('mjml');
+const Handlebars = require('handlebars');
 const fs = require('fs');
 
-// TODO: Implement createMJML
+// TODO: Implement createMJML to dynamically create template
 const createMJML = (callback) => {
-  console.log('Creating MJML...');
   callback();
 };
 
 const loadTemplate = (path, callback) => {
-  console.log('Loading template...');
   fs.readFile(path, 'utf8', (err, template) => {
     if (err) {
       callback(err, null);
@@ -22,10 +21,15 @@ const transpileMJML = (callback) => {
     minify: true,
   };
   loadTemplate('data/template.mjml', (err, mjml) => {
-    console.log('Transpiling to html...');
     const htmlOutput = mjml2html(mjml, options);
     callback(null, htmlOutput.html);
   });
+};
+
+// Use Handlebars.js to inject template email HTML
+const injectVariablesIntoTemplate = (html, data) => {
+  const template = Handlebars.compile(html);
+  return template(data);
 };
 
 const sendError = (err, res, message, data) => {
@@ -40,4 +44,5 @@ module.exports = {
   createMJML,
   sendError,
   transpileMJML,
+  injectVariablesIntoTemplate,
 };
