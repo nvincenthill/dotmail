@@ -1,6 +1,7 @@
-const Handlebars = require('handlebars');
 const transporter = require('./transporter');
-const { createMJML, sendError, transpileMJML } = require('./helpers');
+const {
+  createMJML, sendError, transpileMJML, injectVariablesIntoTemplate,
+} = require('./helpers');
 
 module.exports = {
   post: (req, res) => {
@@ -16,24 +17,17 @@ module.exports = {
           sendError(err, res, 'Failed to transpile MJML');
         }
 
-        // Use Handlebars.js to inject template email HTML
-        const template = Handlebars.compile(html);
-
-        const data = {
+        const variables = {
           name,
           city: 'Oakland, CA',
           kids: [{ name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' }],
         };
 
-        const hydrated = template(data);
-
-        console.log('Sending email...');
-
         const mail = {
           from: process.env.EMAIL,
           to: email,
           subject,
-          html: hydrated,
+          html: injectVariablesIntoTemplate(html, variables),
           text: message,
         };
 
