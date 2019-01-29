@@ -1,7 +1,7 @@
 {
-  "name": "fullstackreacttemplate",
+  "name": "emailbot",
   "version": "1.0.0",
-  "description": "fullstackreacttemplate",
+  "description": "emailbot",
   "author": "Nicholas Vincent-Hill",
   "license": "",
   "engines": {
@@ -34,6 +34,8 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
+    "handlebars": "^4.0.12",
+    "mjml": "^4.3.1",
     "mjml-utils": "^2.2.1",
     "mongoose": "^5.2.4",
     "nodemailer": "^5.1.1",
