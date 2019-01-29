@@ -5,8 +5,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       name: 'Nicholas Vincent-Hill',
-      email: 'abc@example.com',
-      message: 'Hello email server!',
+      email: 'nvincenthill@gmail.com',
+      subject: 'Hello from emailbot!',
+      message: 'Hello world!',
       response: null,
     };
 
@@ -16,7 +17,9 @@ class App extends React.Component {
   }
 
   resetForm() {
-    this.setState({ name: '', email: '', message: '' });
+    this.setState({
+      name: '', email: '', message: '', subject: '',
+    });
   }
 
   handleSuccess(data) {
@@ -31,7 +34,9 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { name, email, message } = this.state;
+    const {
+      name, email, message, subject,
+    } = this.state;
 
     function postData(url = '', data = {}) {
       return fetch(url, {
@@ -57,6 +62,7 @@ class App extends React.Component {
     const emailData = {
       name,
       email,
+      subject,
       message,
     };
     postData(url, emailData)
@@ -68,7 +74,7 @@ class App extends React.Component {
 
   render() {
     const {
-      name, email, message, response,
+      name, email, subject, message, response,
     } = this.state;
     return (
       <div>
@@ -88,7 +94,7 @@ class App extends React.Component {
             />
           </div>
           <div>
-            <h3>Email address</h3>
+            <h3>Recipient address</h3>
             <input
               type="email"
               name="email"
@@ -96,6 +102,17 @@ class App extends React.Component {
               id="email"
               aria-describedby="emailHelp"
               value={email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <h3>Subject</h3>
+            <input
+              type="text"
+              name="subject"
+              className="form-control"
+              id="name"
+              value={subject}
               onChange={this.handleChange}
             />
           </div>
