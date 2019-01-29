@@ -12,9 +12,9 @@ module.exports = {
       if (err) {
         sendError(err, res, 'Failed to create MJML');
       }
-      transpileMJML((err, html) => {
-        if (err) {
-          sendError(err, res, 'Failed to transpile MJML');
+      transpileMJML('data/template.mjml', (error, html) => {
+        if (error) {
+          sendError(error, res, 'Failed to transpile MJML');
         }
 
         const variables = {
@@ -31,12 +31,10 @@ module.exports = {
           text: message,
         };
 
-        transporter.sendMail(mail, (err, data) => {
-          if (err) {
-            console.log(err);
-            sendError(err, res, 'Failed to send email', data);
+        transporter.sendMail(mail, (transportError, data) => {
+          if (transportError) {
+            sendError(transportError, res, 'Failed to send email', data);
           } else {
-            console.log('Successfully sent email!');
             res.json({
               message: 'Successfully sent email!',
             });
