@@ -1,7 +1,5 @@
-const example = require('./example');
-const emailer = require('./emailer');
+const send = require('./send');
 
 module.exports = {
-  example,
-  emailer,
+  send,
 };
