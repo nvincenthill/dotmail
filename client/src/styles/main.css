@@ -6,7 +6,7 @@
   --bgColor: rgb(255, 255, 255);
   --fontColor1: rgb(34, 34, 34);
   --fontColor2: rgb(55, 54, 74);
-  --accentColor1: rgb(28, 57, 221);
+  --accentColor1: rgb(238, 238, 238);
   --accentColor2: rgb(88, 128, 244);
   --mainFont: Helvetica, sans-serif;
   --secFont: Source Sans Pro;
@@ -42,6 +42,13 @@ input {
 
 textarea {
   padding: 0.5rem;
+}
+
+select {
+  min-width: 20vw;
+  text-emphasis: center;
+  padding: 0.5rem;
+  border: 1px solid var(--accentColor1);
 }
 
 .title {

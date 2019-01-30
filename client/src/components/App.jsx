@@ -4,6 +4,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      displayedTemplate: 'template',
+      templates: [
+        { id: 1, name: 'Thank You Email', type: 'personal' },
+        { id: 2, name: 'Tech Checkup Follow-up', type: 'technicalMentor' },
+        { id: 3, name: 'Attendance', type: 'coordinator' },
+        { id: 4, name: 'Example Template', type: 'universal' },
+      ],
       name: 'Nicholas Vincent-Hill',
       email: 'nvincenthill@gmail.com',
       subject: 'Email subject here',
@@ -38,7 +45,7 @@ class App extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const {
-      name, email, message, subject,
+      displayedTemplate, name, email, message, subject,
     } = this.state;
 
     function postData(url = '', data = {}) {
@@ -63,6 +70,7 @@ class App extends React.Component {
 
     const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
+      template: displayedTemplate,
       name,
       email,
       subject,
@@ -77,7 +85,7 @@ class App extends React.Component {
 
   render() {
     const {
-      name, email, subject, message, response,
+      displayedTemplate, templates, name, email, subject, message, response,
     } = this.state;
     return (
       <div>
@@ -85,6 +93,14 @@ class App extends React.Component {
         <br />
 
         <form id="contact-form" onSubmit={this.handleSubmit} method="POST">
+          <h3>Select a template</h3>
+          <select name="displayedTemplate" value={displayedTemplate} onChange={this.handleChange}>
+            {templates.map(template => (
+              <option value={template.name} key={template.id}>
+                {template.name}
+              </option>
+            ))}
+          </select>
           <div>
             <h3>Sender Name</h3>
             <input
