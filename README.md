@@ -65,6 +65,8 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 
 - **Nicholas Vincent-Hill** - [Nicholas Vincent-Hill](http://nickvh.tech/)
 
+- **Josh Elder** - [Josh Elder](https://github.com/jcelder/)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
