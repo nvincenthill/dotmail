@@ -28,7 +28,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+div {
   font-family: var(--mainFont);
 }
 
@@ -55,6 +56,20 @@ select {
   border-bottom: 4px solid var(--mainColor);
   padding: 1rem;
   margin: 0 25%;
+}
+
+.response-message {
+  padding: 0.5rem;
+}
+
+.error {
+  background: red;
+  color: white;
+}
+
+.success {
+  background: green;
+  color: white;
 }
 
 /* Extra small devices (phones, 600px and down) */
