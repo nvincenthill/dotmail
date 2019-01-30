@@ -1,4 +1,4 @@
-const send = require('./send');
+const send = require('./sendMail');
 
 module.exports = {
   send,
