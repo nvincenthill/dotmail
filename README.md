@@ -1,4 +1,4 @@
-# Nick's email bot
+# EMAILBOT
 
 This is a MERN-stack app to programatically send responsively-designed emails with nodemailer + mjml templates
 
