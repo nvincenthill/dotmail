@@ -1,21 +1,48 @@
 import React from 'react';
 
+import Response from './Response';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayedTemplate: 'template',
+      displayedTemplate: {
+        id: 3,
+        name: 'Attendance',
+        type: 'coordinator',
+        subjectLine: 'Attendance 1/26',
+      },
       templates: [
-        { id: 1, name: 'Thank You Email', type: 'personal' },
-        { id: 2, name: 'Tech Checkup Follow-up', type: 'technicalMentor' },
-        { id: 3, name: 'Attendance', type: 'coordinator' },
-        { id: 4, name: 'Example Template', type: 'universal' },
+        {
+          id: 1,
+          name: 'Thank You Email',
+          type: 'personal',
+          subjectLine: 'Thank you!',
+        },
+        {
+          id: 2,
+          name: 'Tech Checkup Follow-up',
+          type: 'technicalMentor',
+          subjectLine: '[ACTION REQUIRED] Tech Check Follow Up',
+        },
+        {
+          id: 3,
+          name: 'Attendance',
+          type: 'coordinator',
+          subjectLine: 'Attendance 1/26',
+        },
+        {
+          id: 4,
+          name: 'Example Template',
+          type: 'universal',
+          subjectLine: 'Example Subject Line',
+        },
       ],
       name: 'Nicholas Vincent-Hill',
       email: 'nvincenthill@gmail.com',
-      subject: 'Email subject here',
+      subject: 'Attendance 1/26',
       message: 'Hello world!',
-      response: null,
+      response: { message: '', error: '', data: '' },
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,13 +59,14 @@ class App extends React.Component {
     });
   }
 
-  handleSuccess(data) {
-    this.setState({ response: JSON.stringify(data) });
+  handleSuccess(response) {
+    this.setState({ response });
     this.resetForm();
   }
 
   handleChange(e) {
     const { name, value } = e.target;
+    // TODO - fix bug that overwrites displayedTemplate in state
     this.setState({ [name]: value });
   }
 
@@ -92,9 +120,15 @@ class App extends React.Component {
         <h1 className="title">Emailbot</h1>
         <br />
 
+        <Response response={response} />
+
         <form id="contact-form" onSubmit={this.handleSubmit} method="POST">
           <h3>Select a template</h3>
-          <select name="displayedTemplate" value={displayedTemplate} onChange={this.handleChange}>
+          <select
+            name="displayedTemplate"
+            value={displayedTemplate.name}
+            onChange={this.handleChange}
+          >
             {templates.map(template => (
               <option value={template.name} key={template.id}>
                 {template.name}
@@ -102,7 +136,7 @@ class App extends React.Component {
             ))}
           </select>
           <div>
-            <h3>Sender Name</h3>
+            <h3>Sender</h3>
             <input
               type="text"
               name="name"
@@ -113,7 +147,7 @@ class App extends React.Component {
             />
           </div>
           <div>
-            <h3>Recipient address(es)</h3>
+            <h3>Recipient(s)</h3>
             <input
               type="email"
               name="email"
@@ -148,7 +182,6 @@ class App extends React.Component {
           </div>
           <button type="submit">Submit</button>
         </form>
-        <div>{response}</div>
       </div>
     );
   }
