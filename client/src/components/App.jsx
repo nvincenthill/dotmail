@@ -6,7 +6,7 @@ class App extends React.Component {
     this.state = {
       name: 'Nicholas Vincent-Hill',
       email: 'nvincenthill@gmail.com',
-      subject: 'Hello from emailbot!',
+      subject: 'Email subject here',
       message: 'Hello world!',
       response: null,
     };
@@ -18,7 +18,10 @@ class App extends React.Component {
 
   resetForm() {
     this.setState({
-      name: '', email: '', message: '', subject: '',
+      name: '',
+      email: '',
+      message: '',
+      subject: '',
     });
   }
 
@@ -78,12 +81,12 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <h1 className="title">Email bot</h1>
+        <h1 className="title">Emailbot</h1>
         <br />
 
         <form id="contact-form" onSubmit={this.handleSubmit} method="POST">
           <div>
-            <h3>Name</h3>
+            <h3>Sender Name</h3>
             <input
               type="text"
               name="name"
@@ -94,7 +97,7 @@ class App extends React.Component {
             />
           </div>
           <div>
-            <h3>Recipient address</h3>
+            <h3>Recipient address(es)</h3>
             <input
               type="email"
               name="email"
