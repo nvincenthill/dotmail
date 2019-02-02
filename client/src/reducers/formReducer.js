@@ -12,6 +12,7 @@ const initialState = {
 export default function formReducer(state = initialState, action) {
   if (action.type === UPDATE_FIELD) {
     return {
+      ...state,
       [action.field]: action.value,
     };
   }
