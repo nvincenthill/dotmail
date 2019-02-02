@@ -30,5 +30,8 @@ client/dist/
 # environmental variables
 .env
 
+# personal data and MJML templates
+data/
+
 # jest
 *__snapshots__
