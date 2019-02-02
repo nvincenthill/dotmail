@@ -1,17 +1,14 @@
 import { connect } from 'react-redux';
 import Form from '../components/Form';
-import { submitTemplate, updateField } from '../actions/actions';
+import { updateField } from '../actions/actions';
 
 const mapStateToProps = state => ({
-  form: state.form,
-  templates: state.restOfState.templates,
-  currentUser: state.restOfState.currentUser,
+  form: state.formReducer,
+  templates: state.templatesReducer,
+  currentUser: { name: state.userReducer.name, email: state.userReducer.email },
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleTemplateSubmission: (q) => {
-    dispatch(submitTemplate(q));
-  },
   updateField: (q) => {
     dispatch(updateField(q));
   },

@@ -22,7 +22,7 @@ class Form extends React.Component {
       <form id="contact-form" onSubmit={this.handleTemplateSubmission} method="POST">
         <h3>Select a template</h3>
         <select name="displayedTemplate" value={name} onChange={this.handleChange}>
-          {templates.map(template => (
+          {templates.templates.map(template => (
             <option value={template.name} key={template.id}>
               {template.name}
             </option>
