@@ -10,6 +10,9 @@ class MJMLTranspiler {
 
   transpile(path, callback) {
     loadTemplate(path, (err, mjml) => {
+      if (err) {
+        callback(err);
+      }
       const htmlOutput = mjml2html(mjml, this.options);
       callback(null, htmlOutput.html);
     });
