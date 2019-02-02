@@ -19,4 +19,4 @@ class MJMLTranspiler {
   }
 }
 
-export default MJMLTranspiler;
+module.exports = MJMLTranspiler;
