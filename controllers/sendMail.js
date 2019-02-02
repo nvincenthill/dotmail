@@ -7,10 +7,7 @@ const EmailCreator = require('./EmailCreator');
 
 module.exports = {
   sendMail: (req, res) => {
-    const {
-      template, name, email, subject, message,
-    } = req.body;
-
+    const { template, recipients } = req.body;
     const transpiler = new MJMLTranspiler();
     const emailCreator = new EmailCreator(process.env.EMAIL);
     const emailSender = new EmailSender(transporter);
@@ -20,21 +17,33 @@ module.exports = {
         sendError(error, res, 'Failed to transpile MJML');
       }
 
-      const injections = {
-        name,
-        city: 'Oakland, CA',
-        kids: [{ name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' }],
-      };
+      const transmissions = [];
 
-      const mail = emailCreator.create(
-        email,
-        subject,
-        injectVariablesIntoTemplate(html, injections),
-        message,
-      );
+      for (let i = 0; i < recipients.length; i += 1) {
+        const injections = {
+          name: recipients[i].preferred,
+          city: 'Oakland, CA',
+          kids: [{ name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' }],
+        };
+        const mail = emailCreator.create(
+          recipients[i].email,
+          template.subjectLine,
+          injectVariablesIntoTemplate(html, injections),
+          template.message,
+        );
+        const transmission = emailSender.send(mail);
+        transmissions.push(transmission);
+      }
 
-      // TODO: Decouple sending a response to POST request from sending an email via gmail SMTP
-      emailSender.send(mail, res);
+      Promise.all(transmissions)
+        .then(() => {
+          res.json({
+            message: 'Successfully sent email(s)!',
+          });
+        })
+        .catch((err) => {
+          sendError(err, res, 'Failed to send email(s)');
+        });
     });
   },
 };
