@@ -1,47 +1,40 @@
 const transporter = require('./transporter');
-const {
-  createMJML, sendError, transpileMJML, injectVariablesIntoTemplate,
-} = require('./helpers');
+const { sendError, injectVariablesIntoTemplate } = require('./helpers');
+
+const MJMLTranspiler = require('./MJMLTranspiler');
+const EmailSender = require('./EmailSender');
+const EmailCreator = require('./EmailCreator');
 
 module.exports = {
-  post: (req, res) => {
-    // TODO: Refactor to accept a template object with different shape
+  sendMail: (req, res) => {
     const {
-      name, email, subject, message,
+      template, name, email, subject, message,
     } = req.body;
-    createMJML((err) => {
-      if (err) {
-        sendError(err, res, 'Failed to create MJML');
+
+    const transpiler = new MJMLTranspiler();
+    const emailCreator = new EmailCreator(process.env.EMAIL);
+    const emailSender = new EmailSender(transporter);
+
+    transpiler.transpile(`data/${template}.mjml`, (error, html) => {
+      if (error) {
+        sendError(error, res, 'Failed to transpile MJML');
       }
-      transpileMJML('data/template.mjml', (error, html) => {
-        if (error) {
-          sendError(error, res, 'Failed to transpile MJML');
-        }
 
-        const variables = {
-          name,
-          city: 'Oakland, CA',
-          kids: [{ name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' }],
-        };
+      const injections = {
+        name,
+        city: 'Oakland, CA',
+        kids: [{ name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' }],
+      };
 
-        const mail = {
-          from: process.env.EMAIL,
-          to: email,
-          subject,
-          html: injectVariablesIntoTemplate(html, variables),
-          text: message,
-        };
+      const mail = emailCreator.create(
+        email,
+        subject,
+        injectVariablesIntoTemplate(html, injections),
+        message,
+      );
 
-        transporter.sendMail(mail, (transportError, data) => {
-          if (transportError) {
-            sendError(transportError, res, 'Failed to send email', data);
-          } else {
-            res.json({
-              message: 'Successfully sent email!',
-            });
-          }
-        });
-      });
+      // TODO: Decouple sending a response to POST request from sending an email via gmail SMTP
+      emailSender.send(mail, res);
     });
   },
 };
