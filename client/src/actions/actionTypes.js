@@ -1,0 +1,3 @@
+export const UPDATE_FIELD = 'UPDATE_FIELD';
+export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATE_TEMPLATES = 'UPDATE_TEMPLATES';
