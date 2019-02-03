@@ -2,10 +2,9 @@ import { UPDATE_FIELD } from '../actions/actionTypes';
 
 const initialState = {
   id: 3,
-  name: 'Attendance',
-  type: 'coordinator',
-  senderName: 'Nicholas Vincent-Hill',
-  subjectLine: 'Attendance 1/26',
+  name: 'example',
+  type: 'example',
+  subjectLine: 'Example Subject Line',
   message: 'Hello world!',
 };
 
