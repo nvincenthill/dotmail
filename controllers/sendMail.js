@@ -12,7 +12,7 @@ module.exports = {
     const emailCreator = new EmailCreator(process.env.EMAIL);
     const emailSender = new EmailSender(transporter);
 
-    transpiler.transpile(`data/${template}.mjml`, (error, html) => {
+    transpiler.transpile(`data/${template.name}.mjml`, (error, html) => {
       if (error) {
         sendError(error, res, 'Failed to transpile MJML');
       }
@@ -21,9 +21,7 @@ module.exports = {
 
       for (let i = 0; i < recipients.length; i += 1) {
         const injections = {
-          name: recipients[i].preferred,
-          city: 'Oakland, CA',
-          kids: [{ name: 'Jimmy', age: '12' }, { name: 'Sally', age: '4' }],
+          ...recipients[i],
         };
         const mail = emailCreator.create(
           recipients[i].email,
