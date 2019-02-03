@@ -24,6 +24,7 @@ html {
 body {
   background: var(--bgColor);
   text-align: center;
+  margin: 0;
 }
 
 h1,
