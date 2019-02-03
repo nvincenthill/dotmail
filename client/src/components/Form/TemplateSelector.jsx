@@ -7,7 +7,7 @@ const TemplateSelector = ({
 }) => (
   <StyledLabel htmlFor={name}>
     {children}
-    <select id={name} value={value} {...otherProps}>
+    <select id={name} value={value} {...otherProps} readOnly>
       {templates.templates.map(template => (
         <option value={template.name} key={template.id}>
           {template.name}
