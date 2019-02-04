@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const FooterStyles = styled.div`
   font-size: 0.75rem;
-  padding: 1rem;
 `;
 
 const Footer = () => (
