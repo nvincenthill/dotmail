@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import StyledLabel from './Label';
 
 const TemplateSelector = ({
-  name, children, templates, value, handleChange,
+  name, children, templates, handleChange,
 }) => (
   <StyledLabel htmlFor={name}>
     {children}
-    <select id={name} value={value} name="templateSelector" onChange={handleChange}>
+    <select id={name} name="templateSelector" onChange={handleChange}>
       {templates.map(template => (
         <option value={template.id} key={template.name}>
           {template.name}
@@ -16,5 +17,12 @@ const TemplateSelector = ({
     </select>
   </StyledLabel>
 );
+
+TemplateSelector.propTypes = {
+  name: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  templates: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default TemplateSelector;
