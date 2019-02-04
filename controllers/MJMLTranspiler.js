@@ -1,4 +1,6 @@
+const fs = require('fs');
 const mjml2html = require('mjml');
+
 const { loadTemplate } = require('./helpers');
 
 class MJMLTranspiler {
@@ -9,12 +11,18 @@ class MJMLTranspiler {
   }
 
   transpile(path, callback) {
-    loadTemplate(path, (err, mjml) => {
+    fs.access(path, fs.constants.F_OK, (err) => {
       if (err) {
-        callback(err);
+        callback(err, null, 'ERROR: Cannot find template file');
+        return;
       }
-      const htmlOutput = mjml2html(mjml, this.options);
-      callback(null, htmlOutput.html);
+      loadTemplate(path, (error, mjml) => {
+        if (error) {
+          callback(error, null, 'ERROR: Cannot load template file');
+        }
+        const htmlOutput = mjml2html(mjml, this.options);
+        callback(null, htmlOutput.html, null);
+      });
     });
   }
 }

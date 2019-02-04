@@ -12,9 +12,10 @@ module.exports = {
     const emailCreator = new EmailCreator(process.env.EMAIL);
     const emailSender = new EmailSender(transporter);
 
-    transpiler.transpile(`data/${form.name}.mjml`, (error, html) => {
+    transpiler.transpile(`data/${form.name}.mjml`, (error, html, descriptionOfError) => {
       if (error) {
-        sendError(error, res, 'Failed to transpile MJML');
+        sendError(error, res, descriptionOfError);
+        return;
       }
 
       const transmissions = [];
