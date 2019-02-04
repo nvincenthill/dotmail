@@ -1,4 +1,4 @@
-import { UPDATE_FIELD } from '../actions/actionTypes';
+import { UPDATE_FIELD, UPDATE_DISPLAYED_TEMPLATE } from '../actions/actionTypes';
 
 const initialState = {
   id: 3,
@@ -14,6 +14,9 @@ export default function formReducer(state = initialState, action) {
       ...state,
       [action.field]: action.value,
     };
+  }
+  if (action.type === UPDATE_DISPLAYED_TEMPLATE) {
+    return { ...action.form };
   }
   return state;
 }

@@ -16,8 +16,12 @@ class Form extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target;
-    const { updateField } = this.props;
-    updateField({ value, field: name });
+    const { updateField, updateDisplayedTemplate, templates } = this.props;
+    if (name !== 'templateSelector') {
+      updateField({ value, field: name });
+    } else {
+      updateDisplayedTemplate({ ...templates[value] });
+    }
   }
 
   handleTemplateSubmission(e) {
@@ -65,13 +69,13 @@ class Form extends React.Component {
   render() {
     const { templates, currentUser, form } = this.props;
     const { name } = currentUser;
-    const { subjectLine, message } = form;
+    const { value, subjectLine, message } = form;
     return (
       <FormStyles onSubmit={this.handleTemplateSubmission} method="POST">
         <TemplateSelector
           name="displayedTemplate"
-          value={name}
-          onChange={this.handleChange}
+          value={value}
+          handleChange={this.handleChange}
           templates={templates}
         >
           Select a template
@@ -107,6 +111,10 @@ class Form extends React.Component {
 
 Form.propTypes = {
   updateField: PropTypes.func.isRequired,
+  updateDisplayedTemplate: PropTypes.func.isRequired,
+  form: PropTypes.instanceOf(Object).isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
+  templates: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Form;
