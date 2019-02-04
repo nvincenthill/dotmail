@@ -15,6 +15,11 @@ const Label = styled.label`
   textarea {
     display: block;
     margin: 0.5rem auto;
+    min-width: 35vw;
+  }
+
+  textarea {
+    min-width: 50vw;
   }
 `;
 
