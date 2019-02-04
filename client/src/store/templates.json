@@ -11,7 +11,7 @@
       "salutation": "Example salutation"
     },
     {
-      "id": 0,
+      "id": 1,
       "templateName": "thankyou",
       "name": "Thank you email",
       "type": "personal",
@@ -21,7 +21,7 @@
       "salutation": "Warm regards,"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Attendance",
       "type": "coordinator",
       "subjectLine": "Attendance 1/26",
