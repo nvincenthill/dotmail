@@ -23,6 +23,7 @@ module.exports = {
       for (let i = 0; i < recipients.length; i += 1) {
         const injections = {
           ...recipients[i],
+          ...form,
         };
         const mail = emailCreator.create(
           recipients[i].email,
