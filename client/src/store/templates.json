@@ -2,35 +2,32 @@
   "templates": [
     {
       "id": 0,
-      "name": "Thank You Email",
-      "type": "personal",
-      "subjectLine": "Thank you!",
-      "message": "Thank You!"
-    },
-    {
-      "id": 1,
-      "name": "Tech Checkup Follow-up",
-      "type": "technicalMentor",
-      "subjectLine": "[ACTION REQUIRED] Tech Check Follow Up",
-      "message": "Tech Checkup example text"
-    },
-    {
-      "id": 2,
-      "name": "Attendance",
-      "type": "coordinator",
-      "subjectLine": "Attendance 1/26",
-      "greeting": "Hey there industrious student,",
-      "message": "You have yet to sign into hrgo.run/sfm-attendance today, please do so ASAP, informing us of your attendance status for the day. While it can be somewhat hectic here first thing in the morning, timely attendance is an important practice to get into the habit of. Signing in via mobile can be spotty and we do suggest that you sign in on your laptop upon arriving. We recommend setting an alarm/reminder on your phone for before 9 am to make sure it gets done. Once you do sign in, please be advised that you will receive 1 point on your attendance record for a late check-in today, with 9 points being the max before your enrollment will be slotted for removal. We appreciate your attention to our attendance policy. Have an engaging and productive day and happy hacking!",
-      "salutation": "Warm regards,"
-    },
-    {
-      "id": 3,
+      "templateName": "example",
       "name": "Example",
       "type": "universal",
       "subjectLine": "Example subject line",
       "greeting": "Example greeting",
       "message": "Example message",
       "salutation": "Example salutation"
+    },
+    {
+      "id": 0,
+      "templateName": "thankyou",
+      "name": "Thank you email",
+      "type": "personal",
+      "subjectLine": "Thank you!",
+      "greeting": "Hi {{preferred}},",
+      "message": "Thank you so much for that thing you did for me. I really appreciate your help. Thanks again!",
+      "salutation": "Warm regards,"
+    },
+    {
+      "id": 3,
+      "name": "Attendance",
+      "type": "coordinator",
+      "subjectLine": "Attendance 1/26",
+      "greeting": "Hey there industrious student,",
+      "message": "You have yet to sign into hrgo.run/sfm-attendance today, please do so ASAP, informing us of your attendance status for the day. While it can be somewhat hectic here first thing in the morning, timely attendance is an important practice to get into the habit of. Signing in via mobile can be spotty and we do suggest that you sign in on your laptop upon arriving. We recommend setting an alarm/reminder on your phone for before 9 am to make sure it gets done. Once you do sign in, please be advised that you will receive 1 point on your attendance record for a late check-in today, with 9 points being the max before your enrollment will be slotted for removal. We appreciate your attention to our attendance policy. Have an engaging and productive day and happy hacking!",
+      "salutation": "Warm regards,"
     }
   ]
 }
