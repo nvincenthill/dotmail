@@ -7,12 +7,12 @@ const EmailCreator = require('./EmailCreator');
 
 module.exports = {
   sendMail: (req, res) => {
-    const { form, recipients } = req.body;
+    const { form, recipients, currentUser } = req.body;
     const transpiler = new MJMLTranspiler();
     const emailCreator = new EmailCreator(process.env.EMAIL);
     const emailSender = new EmailSender(transporter);
 
-    transpiler.transpile(`data/${form.name}.mjml`, (error, html, descriptionOfError) => {
+    transpiler.transpile(`data/${form.templateName}.mjml`, (error, html, descriptionOfError) => {
       if (error) {
         sendError(error, res, descriptionOfError);
         return;
@@ -24,6 +24,8 @@ module.exports = {
         const injections = {
           ...recipients[i],
           ...form,
+          senderName: currentUser.name,
+          senderEmail: currentUser.email,
         };
         const mail = emailCreator.create(
           recipients[i].email,
