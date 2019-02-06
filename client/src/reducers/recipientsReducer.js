@@ -10,7 +10,7 @@ export default function recipientsReducer(state = initialState, action) {
       preferred: action.preferred,
       email: action.email,
     };
-    return [...state.recipients, newRecipient];
+    return [...state, newRecipient];
   }
   return state;
 }
