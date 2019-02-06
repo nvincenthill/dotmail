@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Recipients from '../Recipients/Recipients';
 import FormStyles from './FormStyles';
 import CustomInput from './CustomInput';
 import TemplateSelector from './TemplateSelector';
@@ -46,19 +47,12 @@ class Form extends React.Component {
     const port = 3000;
     const endpoint = '/api/send';
 
-    const { form, currentUser } = this.props;
+    const { form, currentUser, recipients } = this.props;
     const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
       currentUser,
-      recipients: [
-        {
-          firstName: 'First recipient firstName',
-          lastName: 'First recipient lastName',
-          preferred: 'First recipient preferredName',
-          email: 'nvincenthill@gmail.com',
-        },
-      ],
+      recipients,
     };
     postData(url, emailData)
       .then(data => console.log(data))
@@ -68,7 +62,7 @@ class Form extends React.Component {
   }
 
   render() {
-    const { templates, currentUser, form } = this.props;
+    const { templates, currentUser, form, recipients, addRecipient } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, message } = form;
     return (
@@ -81,6 +75,7 @@ class Form extends React.Component {
         >
           Select a template
         </TemplateSelector>
+        <Recipients recipients={recipients} addRecipient={addRecipient} />
         <CustomInput type="text" name="name" value={name} onChange={this.handleChange}>
           Sender
         </CustomInput>
@@ -113,9 +108,11 @@ class Form extends React.Component {
 Form.propTypes = {
   updateField: PropTypes.func.isRequired,
   updateDisplayedTemplate: PropTypes.func.isRequired,
+  addRecipient: PropTypes.func.isRequired,
   form: PropTypes.instanceOf(Object).isRequired,
   currentUser: PropTypes.instanceOf(Object).isRequired,
   templates: PropTypes.instanceOf(Object).isRequired,
+  recipients: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Form;
