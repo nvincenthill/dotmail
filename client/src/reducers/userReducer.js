@@ -1,8 +1,8 @@
 import { UPDATE_USER } from '../actions/actionTypes';
 
 const initialState = {
-  name: 'Nicholas Vincent-Hill',
-  email: 'nvincenthill@gmail.com',
+  name: process.env.NAME,
+  email: process.env.EMAIL,
 };
 
 export default function userReducer(state = initialState, action) {
