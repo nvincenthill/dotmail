@@ -47,19 +47,12 @@ class Form extends React.Component {
     const port = 3000;
     const endpoint = '/api/send';
 
-    const { form, currentUser } = this.props;
+    const { form, currentUser, recipients } = this.props;
     const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
       currentUser,
-      recipients: [
-        {
-          firstName: 'First recipient firstName',
-          lastName: 'First recipient lastName',
-          preferred: 'First recipient preferredName',
-          email: 'nvincenthill@gmail.com',
-        },
-      ],
+      recipients,
     };
     postData(url, emailData)
       .then(data => console.log(data))

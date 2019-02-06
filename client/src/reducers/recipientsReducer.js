@@ -1,8 +1,6 @@
 import { ADD_RECIPIENT } from '../actions/actionTypes';
 
-const initialState = {
-  recipients: [],
-};
+const initialState = [];
 
 export default function recipientsReducer(state = initialState, action) {
   if (action.type === ADD_RECIPIENT) {
@@ -12,9 +10,7 @@ export default function recipientsReducer(state = initialState, action) {
       preferred: action.preferred,
       email: action.email,
     };
-    return {
-      recipients: [...state.recipients, newRecipient],
-    };
+    return [...state.recipients, newRecipient];
   }
   return state;
 }
