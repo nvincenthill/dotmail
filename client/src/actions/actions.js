@@ -11,3 +11,13 @@ export function updateDisplayedTemplate(form) {
 export function updateUser(payload) {
   return { type: types.UPDATE_USER, name: payload.name, email: payload.email };
 }
+
+export function addRecipient(payload) {
+  return {
+    type: types.ADD_RECIPIENT,
+    firstName: payload.firstName.current.value,
+    lastName: payload.lastName.current.value,
+    preferred: payload.preferred.current.value,
+    email: payload.email.current.value,
+  };
+}
