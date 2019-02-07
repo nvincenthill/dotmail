@@ -21,3 +21,12 @@ export function addRecipient(payload) {
     email: payload.email.current.value,
   };
 }
+
+export function updateResponse(response) {
+  return {
+    type: types.UPDATE_RESPONSE,
+    message: response.message,
+    error: response.error,
+    data: response.data,
+  };
+}

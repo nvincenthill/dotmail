@@ -5,10 +5,10 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import base, { firebaseApp, db } from '../base';
 
-// import Response from './Response';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import FormContainer from '../../containers/FormContainer';
+import ResponseContainer from '../../containers/ResponseContainer';
+import Footer from '../Footer/Footer';
 
 const AppStyles = styled.div`
   max-width: 40rem;
@@ -104,10 +104,10 @@ class App extends React.Component {
       <React.Fragment>
         <AppStyles>
           <Header />
-          {/* <Response /> */}
+          <ResponseContainer />
           <FormContainer />
+          <Footer />
         </AppStyles>
-        <Footer />
       </React.Fragment>
     );
   }

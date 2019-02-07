@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 import Form from '../components/Form/Form';
-import { updateField, updateDisplayedTemplate, addRecipient } from '../actions/actions';
+import {
+  updateField,
+  updateDisplayedTemplate,
+  addRecipient,
+  updateResponse,
+} from '../actions/actions';
 
 const mapStateToProps = state => ({
   form: state.formReducer,
@@ -15,6 +20,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateDisplayedTemplate: (q) => {
     dispatch(updateDisplayedTemplate(q));
+  },
+  updateResponse: (q) => {
+    dispatch(updateResponse(q));
   },
   addRecipient: (q) => {
     dispatch(addRecipient(q));

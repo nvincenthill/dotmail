@@ -47,7 +47,7 @@ class Form extends React.Component {
     const port = 3000;
     const endpoint = '/api/send';
 
-    const { form, currentUser, recipients } = this.props;
+    const { form, currentUser, recipients, updateResponse } = this.props;
     const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
@@ -55,7 +55,7 @@ class Form extends React.Component {
       recipients,
     };
     postData(url, emailData)
-      .then(data => console.log(data))
+      .then(response => updateResponse(response))
       .catch((error) => {
         console.log(error);
       });
@@ -78,15 +78,6 @@ class Form extends React.Component {
         <Recipients recipients={recipients} addRecipient={addRecipient} />
         <CustomInput type="text" name="name" value={name} onChange={this.handleChange}>
           Sender
-        </CustomInput>
-        <CustomInput
-          type="email"
-          name="email"
-          aria-describedby="emailHelp"
-          value={currentUser.email}
-          onChange={this.handleChange}
-        >
-          Recipient
         </CustomInput>
         <CustomInput
           name="subjectLine"
