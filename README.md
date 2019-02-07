@@ -69,6 +69,8 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 
 - **Fernando De La Madrid** - [Fernando De La Madrid](https://github.com/ferdelamad/)
 
+**Our Trello Board** - [Check out what we're working on next](https://trello.com/b/PdQwFo3v/emailbot)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
