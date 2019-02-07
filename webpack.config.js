@@ -1,5 +1,14 @@
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((acc, el) => {
+  acc[`process.env.${el}`] = JSON.stringify(env[el]);
+  return acc;
+}, {});
+
 module.exports = {
-  entry: `${__dirname}/client/src/index.jsx`,
+  entry: ['@babel/polyfill', `${__dirname}/client/src/index.jsx`],
   output: {
     filename: 'bundle.js',
     path: `${__dirname}/client/dist`,
@@ -25,4 +34,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [new webpack.DefinePlugin(envKeys)],
 };
