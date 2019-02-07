@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Recipient from './Recipient';
 
@@ -27,12 +28,16 @@ class Recipients extends Component {
       <div>
         <h3>Email Recipients</h3>
         {inputRecipients}
-        <button type="button" onClick={() => this.appendRecipient()}>
+        <button type="button" onClick={this.appendRecipient}>
           Add a new recipient
         </button>
       </div>
     );
   }
 }
+
+Recipients.propTypes = {
+  addRecipient: PropTypes.func.isRequired,
+};
 
 export default Recipients;
