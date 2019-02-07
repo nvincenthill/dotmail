@@ -12,17 +12,19 @@ class Recipient extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(action) {
     const { addRecipient, removeRecipient, index } = this.props;
     const {
       firstName, lastName, preferred, email,
     } = this.state;
-    addRecipient({
-      firstName,
-      lastName,
-      preferred,
-      email,
-    });
+    if (action === 'ADD') {
+      addRecipient({
+        firstName,
+        lastName,
+        preferred,
+        email,
+      });
+    }
     removeRecipient(index);
   }
 
@@ -51,9 +53,16 @@ class Recipient extends Component {
         <button
           type="button"
           style={{ display: 'block', margin: '0 auto' }}
-          onClick={this.handleClick}
+          onClick={() => this.handleClick('ADD')}
         >
           Add Recipient
+        </button>
+        <button
+          type="button"
+          style={{ display: 'block', margin: '0 auto' }}
+          onClick={this.handleClick}
+        >
+          Remove Recipient
         </button>
       </div>
     );
