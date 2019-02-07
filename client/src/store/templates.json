@@ -28,6 +28,16 @@
       "greeting": "Hey there industrious student,",
       "message": "You have yet to sign into hrgo.run/sfm-attendance today, please do so ASAP, informing us of your attendance status for the day. While it can be somewhat hectic here first thing in the morning, timely attendance is an important practice to get into the habit of. Signing in via mobile can be spotty and we do suggest that you sign in on your laptop upon arriving. We recommend setting an alarm/reminder on your phone for before 9 am to make sure it gets done. Once you do sign in, please be advised that you will receive 1 point on your attendance record for a late check-in today, with 9 points being the max before your enrollment will be slotted for removal. We appreciate your attention to our attendance policy. Have an engaging and productive day and happy hacking!",
       "salutation": "Warm regards,"
+    },
+    {
+      "id": 3,
+      "name": "tracking",
+      "templateName": "tracking",
+      "type": "business",
+      "subjectLine": "Your EllaBooty cream has been shipped!",
+      "greeting": "none,",
+      "message": "none",
+      "salutation": "none"
     }
   ]
 }
