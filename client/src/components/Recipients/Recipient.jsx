@@ -9,10 +9,24 @@ class Recipient extends Component {
       preferred: React.createRef(),
       email: React.createRef(),
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { addRecipient, removeRecipient, index } = this.props;
+    const {
+      firstName, lastName, preferred, email,
+    } = this.state;
+    addRecipient({
+      firstName,
+      lastName,
+      preferred,
+      email,
+    });
+    removeRecipient(index);
   }
 
   render() {
-    const { addRecipient } = this.props;
     const {
       firstName, lastName, preferred, email,
     } = this.state;
@@ -37,13 +51,7 @@ class Recipient extends Component {
         <button
           type="button"
           style={{ display: 'block', margin: '0 auto' }}
-          onClick={() => addRecipient({
-            firstName,
-            lastName,
-            preferred,
-            email,
-          })
-          }
+          onClick={this.handleClick}
         >
           Add Recipient
         </button>
