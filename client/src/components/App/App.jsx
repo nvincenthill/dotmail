@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 // import Response from './Response';
 import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 import FormContainer from '../../containers/FormContainer';
 
 const AppStyles = styled.div`
@@ -14,7 +15,7 @@ const AppStyles = styled.div`
 const App = () => (
   <React.Fragment>
     <AppStyles>
-      <h1 className="title">Emailbot</h1>
+      <Header />
       {/* <Response /> */}
       <FormContainer />
     </AppStyles>
