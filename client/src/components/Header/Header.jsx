@@ -1,9 +1,8 @@
 import React from 'react';
 
 import firebase from 'firebase/app';
-import 'firebase/database'; // If using Firebase database
-import 'firebase/auth'; // If using Firebase storage
-import base, { firebaseApp } from '../base';
+import 'firebase/auth';
+import base, { firebaseApp, db } from '../base';
 
 class Header extends React.Component {
   constructor() {
@@ -11,9 +10,25 @@ class Header extends React.Component {
     this.state = {
       uid: null,
       userAuthenticated: false,
+      userData: null,
+      isLoading: true,
+      userData: [],
     };
-    this.handleClick = this.handleClick.bind();
-    this.authenticate = this.authenticate.bind();
+    this.handleClick = this.handleClick.bind(this);
+    this.authenticate = this.authenticate.bind(this);
+    this.authHandler = this.authHandler.bind(this);
+    this.writeUserData = this.writeUserData.bind(this);
+  }
+
+  componentDidMount() {
+    this.ref = base.bindCollection('userData', {
+      context: this,
+      state: 'userData',
+      withRefs: true,
+      then() {
+        this.setState({ isLoading: false });
+      },
+    });
   }
 
   handleClick() {
@@ -29,26 +44,24 @@ class Header extends React.Component {
   }
 
   async authHandler(authData) {
+    // ! user is now authenticated and but not trusted
+    // TODO: change firestore database read/write rules
     this.setState({
       uid: authData.user.uid,
       userAuthenticated: true,
     });
 
-    let userData;
     const { uid } = this.state;
 
     if (!authData.additionalUserInfo.isNewUser) {
-      userData = await base.fetch(`users/${uid}/userData`, {
-        context: this,
-      });
+      // TODO: fetch data from db
     } else {
-      userData = null;
+      // TODO: handle new user
+      this.writeUserData();
     }
 
-    this.writeUserData(uid, userData, authData.user.displayName, authData.user.email);
-    this.ref = base.syncState(`users/${uid}/userData`, {
-      context: this,
-      state: 'randomRecipes',
+    base.addToCollection('userData', {
+      hello: 'world',
     });
   }
 
@@ -60,26 +73,18 @@ class Header extends React.Component {
     });
   }
 
-  writeUserData(uid, payload, name, email) {
-    firebase
-      .database()
-      .ref(`users/${uid}`)
-      .set({
+  writeUserData() {
+    const { uid } = this.state;
+    db.collection('users')
+      .add({
         uid,
-        payload,
-        name,
-        email,
+      })
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
       });
-  }
-
-  checkIfUserExists(userId) {
-    const usersRef = firebase.database().ref('users/');
-    usersRef.child(userId).once('value', (snapshot) => {
-      const exists = snapshot.val() !== null;
-      if (exists) {
-        console.log('exists');
-      }
-    });
   }
 
   render() {
