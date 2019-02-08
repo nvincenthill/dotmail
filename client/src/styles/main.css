@@ -54,7 +54,6 @@ select {
 }
 
 .title {
-  border-bottom: 4px solid var(--mainColor);
   padding: 1rem;
   margin: 0 25%;
 }
@@ -71,6 +70,11 @@ select {
 .success {
   background: green;
   color: white;
+}
+
+#logo {
+  max-width: 20%;
+  height: auto;
 }
 
 /* Extra small devices (phones, 600px and down) */
