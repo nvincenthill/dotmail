@@ -1,19 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import base, { firebaseApp, db } from '../base';
 
+import GlobalStyle from '../../Global';
 import FormContainer from '../../containers/FormContainer';
 import HeaderContainer from '../../containers/HeaderContainer';
 import ResponseContainer from '../../containers/ResponseContainer';
 import Footer from '../Footer/Footer';
+import Theme from './Theme';
 
 const AppStyles = styled.div`
   padding: 1rem 1.5rem;
-  background: #eee;
+  background: ${({ theme }) => theme.colors.background};
 `;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -105,14 +108,17 @@ class App extends React.Component {
   // TODO: Render components conditionally based on authStatus
   render() {
     return (
-      <React.Fragment>
-        <AppStyles>
-          <HeaderContainer authenticate={this.authenticate} logOut={this.logOut} />
-          <ResponseContainer />
-          <FormContainer />
-          <Footer />
-        </AppStyles>
-      </React.Fragment>
+      <ThemeProvider theme={Theme}>
+        <React.Fragment>
+          <GlobalStyle />
+          <AppStyles>
+            <HeaderContainer authenticate={this.authenticate} logOut={this.logOut} />
+            <ResponseContainer />
+            <FormContainer />
+            <Footer />
+          </AppStyles>
+        </React.Fragment>
+      </ThemeProvider>
     );
   }
 }
