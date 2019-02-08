@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+const HeaderStyles = styled.div`
+  img {
+    max-width: 20%;
+    height: auto;
+  }
+
+  .title {
+    margin: 0 25%;
+  }
+`;
 class Header extends React.Component {
   constructor() {
     super();
@@ -33,11 +44,11 @@ class Header extends React.Component {
     const { currentUser } = this.props;
 
     return (
-      <div>
+      <HeaderStyles>
         <img id="logo" src="/assets/emailbot.png" alt="logo did not load" />
-        <h1 className="title">Emailbot</h1>
+        <h1 className="title">EmailBot</h1>
         <div>{currentUser.isUserAuthenticated ? logOutButton : logInButton}</div>
-      </div>
+      </HeaderStyles>
     );
   }
 }

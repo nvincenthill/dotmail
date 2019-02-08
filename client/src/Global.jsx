@@ -45,12 +45,6 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid ${({ theme }) => theme.colors.accentColor1};
   }
 
-  .title {
-    border-bottom: 4px solid ${({ theme }) => theme.colors.primary};
-    padding: 1rem;
-    margin: 0 25%;
-  }
-
   .response-message {
     padding: 0.5rem;
   }
