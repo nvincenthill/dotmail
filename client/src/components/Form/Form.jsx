@@ -9,6 +9,7 @@ import TextArea from './TextArea';
 
 const FormStyles = styled.form`
   background: #eee;
+  padding: 1rem;
 `;
 
 class Form extends React.Component {

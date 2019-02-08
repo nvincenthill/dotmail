@@ -38,6 +38,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0.5rem;
   }
 
+  button {
+    min-width: 10%;
+  }
+
   select {
     min-width: 20vw;
     text-emphasis: center;
