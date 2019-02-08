@@ -8,8 +8,16 @@ export function updateDisplayedTemplate(form) {
   return { type: types.UPDATE_DISPLAYED_TEMPLATE, form };
 }
 
-export function updateUser(payload) {
-  return { type: types.UPDATE_USER, name: payload.name, email: payload.email };
+export function updateUser({
+  name, email, uid, isUserAuthenticated,
+}) {
+  return {
+    type: types.UPDATE_USER,
+    name,
+    email,
+    uid,
+    isUserAuthenticated,
+  };
 }
 
 export function addRecipient(payload) {

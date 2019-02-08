@@ -19,26 +19,24 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid: null,
-      userAuthenticated: false,
-      userData: [],
-      isLoading: true,
+      isLoading: false,
     };
 
     this.authenticate = this.authenticate.bind(this);
+    this.logOut = this.logOut.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.writeUserData = this.writeUserData.bind(this);
   }
 
   componentDidMount() {
-    this.ref = base.bindCollection('userData', {
-      context: this,
-      state: 'userData',
-      withRefs: true,
-      then() {
-        this.setState({ isLoading: false });
-      },
-    });
+    // this.ref = base.bindCollection('userData', {
+    //   context: this,
+    //   state: 'userData',
+    //   withRefs: true,
+    //   then() {
+    //     this.setState({ isLoading: false });
+    //   },
+    // });
   }
 
   authenticate(provider) {
@@ -52,9 +50,12 @@ class App extends React.Component {
   async authHandler(authData) {
     // ! user is now authenticated and but not trusted
     // TODO: change firestore database read/write rules
-    this.setState({
+    const { updateUser } = this.props;
+    updateUser({
+      name: authData.additionalUserInfo.profile.name,
+      email: authData.additionalUserInfo.profile.email,
       uid: authData.user.uid,
-      userAuthenticated: true,
+      isUserAuthenticated: true,
     });
     if (!authData.additionalUserInfo.isNewUser) {
       // TODO: fetch data from db
@@ -79,9 +80,12 @@ class App extends React.Component {
 
   async logOut() {
     await firebase.auth().signOut();
-    this.setState({
-      uid: null,
-      userAuthenticated: false,
+    const { updateUser } = this.props;
+    updateUser({
+      name: '',
+      email: '',
+      uid: '',
+      isUserAuthenticated: false,
     });
   }
 
@@ -99,11 +103,12 @@ class App extends React.Component {
       });
   }
 
+  // TODO: Render components conditionally based on authStatus
   render() {
     return (
       <React.Fragment>
         <AppStyles>
-          <Header />
+          <Header authenticate={this.authenticate} logOut={this.logOut} />
           <ResponseContainer />
           <FormContainer />
           <Footer />

@@ -8,13 +8,13 @@ class Header extends React.Component {
   }
 
   handleClick(e) {
+    const { authenticate, logOut } = this.props;
     if (e.target.innerHTML === 'Log in') {
-      // TODO: Log in user
-      this.authenticate('Google');
+      authenticate('Google');
     }
 
     if (e.target.innerHTML === 'Log out') {
-      // TODO: Log out user
+      logOut();
     }
   }
 

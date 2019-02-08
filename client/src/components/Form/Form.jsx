@@ -47,7 +47,9 @@ class Form extends React.Component {
     const port = 3000;
     const endpoint = '/api/send';
 
-    const { form, currentUser, recipients, updateResponse } = this.props;
+    const {
+      form, currentUser, recipients, updateResponse,
+    } = this.props;
     const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
@@ -62,7 +64,9 @@ class Form extends React.Component {
   }
 
   render() {
-    const { templates, currentUser, form, recipients, addRecipient } = this.props;
+    const {
+      templates, currentUser, form, recipients, addRecipient,
+    } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, message } = form;
     return (
