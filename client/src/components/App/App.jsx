@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeProvider, css } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -12,13 +12,9 @@ import ResponseContainer from '../../containers/ResponseContainer';
 import Footer from '../Footer/Footer';
 import { Theme } from '../../utilities';
 
-const test = css`
-  padding: 1rem 1.5rem;
-`;
-
 const AppStyles = styled.div`
-  ${test};
-  /* background: ${({ theme }) => theme.colors.background}; */
+  padding: 1rem 1.5rem;
+  background: ${({ theme }) => theme.colors.background};
 `;
 
 class App extends React.Component {

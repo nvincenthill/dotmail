@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { StyledBtn } from '../../elements';
+
 class Recipient extends Component {
   constructor(props) {
     super(props);
@@ -50,20 +52,10 @@ class Recipient extends Component {
           Email
           <input type="text" id="email" name="email" ref={email} />
         </label>
-        <button
-          type="button"
-          style={{ display: 'block', margin: '0 auto' }}
-          onClick={() => this.handleClick('ADD')}
-        >
-          Add Recipient
-        </button>
-        <button
-          type="button"
-          style={{ display: 'block', margin: '0 auto' }}
-          onClick={this.handleClick}
-        >
-          Remove Recipient
-        </button>
+        <StyledBtn onClick={() => this.handleClick('ADD')}>Add</StyledBtn>
+        <StyledBtn type="cancel" onClick={this.handleClick}>
+          Remove
+        </StyledBtn>
       </div>
     );
   }

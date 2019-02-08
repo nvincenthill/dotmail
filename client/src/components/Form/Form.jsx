@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Recipients from '../Recipients/Recipients';
-import { CustomInput } from '../../elements';
+import { CustomInput, StyledBtn } from '../../elements';
 import TemplateSelector from './TemplateSelector';
 import TextArea from './TextArea';
 
@@ -99,7 +99,7 @@ class Form extends React.Component {
         <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
           Message
         </TextArea>
-        <button type="submit">Submit</button>
+        <StyledBtn check="submit">Submit</StyledBtn>
       </FormStyles>
     );
   }
