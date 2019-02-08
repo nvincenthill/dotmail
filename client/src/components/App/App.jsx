@@ -11,7 +11,6 @@ import ResponseContainer from '../../containers/ResponseContainer';
 import Footer from '../Footer/Footer';
 
 const AppStyles = styled.div`
-  max-width: 40rem;
   padding: 1rem 1.5rem;
   background: #eee;
 `;
