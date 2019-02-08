@@ -20,18 +20,22 @@ class Header extends React.Component {
   }
 
   render() {
+    const logInButton = (
+      <button type="submit" onClick={e => this.handleClick(e)}>
+        Log in
+      </button>
+    );
+    const logOutButton = (
+      <button type="submit" onClick={e => this.handleClick(e)}>
+        Log out
+      </button>
+    );
+    const { currentUser } = this.props;
+
     return (
       <div>
         <h1 className="title">Emailbot</h1>
-        <div>
-          <button type="submit" onClick={e => this.handleClick(e)}>
-            Log in
-          </button>
-
-          <button type="submit" onClick={e => this.handleClick(e)}>
-            Log out
-          </button>
-        </div>
+        <div>{currentUser.isUserAuthenticated ? logOutButton : logInButton}</div>
       </div>
     );
   }
@@ -40,6 +44,7 @@ class Header extends React.Component {
 Header.propTypes = {
   authenticate: PropTypes.func.isRequired,
   logOut: PropTypes.func.isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Header;
