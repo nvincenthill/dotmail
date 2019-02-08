@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Recipient from './Recipient';
+import { StyledBtn } from '../../elements';
 
 class Recipients extends Component {
   constructor(props) {
@@ -47,9 +48,7 @@ class Recipients extends Component {
       <div>
         <h3>Email Recipients</h3>
         {this.renderRecipients()}
-        <button type="button" onClick={this.appendRecipient}>
-          Add a new recipient
-        </button>
+        <StyledBtn onClick={this.appendRecipient}>Add Recipient</StyledBtn>
       </div>
     );
   }
