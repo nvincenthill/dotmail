@@ -49,20 +49,6 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid ${({ theme }) => theme.colors.accentColor1};
   }
 
-  .response-message {
-    padding: 0.5rem;
-  }
-
-  .error {
-    background: red;
-    color: white;
-  }
-
-  .success {
-    background: green;
-    color: white;
-  }
-
   ${Above.small`
     body {
       background: ${({ theme }) => theme.colors.background};

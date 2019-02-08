@@ -1,26 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styled from 'styled-components';
+
+const ResponseStyles = styled.div`
+  .response {
+    padding: 0.5rem;
+  }
+
+  .error {
+    background: red;
+    color: white;
+  }
+
+  .success {
+    background: green;
+    color: white;
+  }
+`;
+
 const Response = (props) => {
   const { response } = props;
-  const { message, error, data } = response;
-  const messageView = <div className="response-message success">{message}</div>;
-  const errorView = <div className="response-message error">{`ERROR: ${error}`}</div>;
-  const dataView = <div className="response-message data">{data}</div>;
-  return (
-    <div className="response-container">
-      {message ? messageView : null}
-      {error ? errorView : null}
-      {data ? dataView : null}
-    </div>
-  );
+  const { message, error } = response;
+  const responseView = <div className={`response ${error ? 'error' : 'success'}`}>{message}</div>;
+  return <ResponseStyles>{message === null ? null : responseView}</ResponseStyles>;
 };
 
 Response.propTypes = {
   response: PropTypes.PropTypes.shape({
     message: PropTypes.string,
-    data: PropTypes.string,
-    error: PropTypes.string,
+    error: PropTypes.bool,
   }).isRequired,
 };
 

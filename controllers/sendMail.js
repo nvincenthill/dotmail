@@ -12,6 +12,12 @@ module.exports = {
     const emailCreator = new EmailCreator(process.env.EMAIL);
     const emailSender = new EmailSender(transporter);
 
+    // * handle data/error validation
+    if (!recipients || !currentUser.email) {
+      sendError(true, res, 'ERROR: Invalid sender or recipient(s)!');
+      return;
+    }
+
     transpiler.transpile(`data/${form.templateName}.mjml`, (error, html, descriptionOfError) => {
       if (error) {
         sendError(error, res, descriptionOfError);
