@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StyledLabel from './Label';
+import { StyledLabel } from '../../elements';
 
 const TextArea = ({
   children, name, value, ...otherProps
