@@ -5,8 +5,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import base, { firebaseApp, db } from '../base';
 
-import Header from '../Header/Header';
 import FormContainer from '../../containers/FormContainer';
+import HeaderContainer from '../../containers/HeaderContainer';
 import ResponseContainer from '../../containers/ResponseContainer';
 import Footer from '../Footer/Footer';
 
@@ -107,7 +107,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <AppStyles>
-          <Header authenticate={this.authenticate} logOut={this.logOut} />
+          <HeaderContainer authenticate={this.authenticate} logOut={this.logOut} />
           <ResponseContainer />
           <FormContainer />
           <Footer />
