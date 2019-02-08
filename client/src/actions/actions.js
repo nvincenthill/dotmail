@@ -34,7 +34,7 @@ export function updateResponse(response) {
   return {
     type: types.UPDATE_RESPONSE,
     message: response.message,
-    error: response.error,
+    error: response.error || response.err,
     data: response.data,
   };
 }
