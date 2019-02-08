@@ -1,11 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Recipients from '../Recipients/Recipients';
-import FormStyles from './FormStyles';
-import CustomInput from './CustomInput';
+import { CustomInput } from '../../elements';
 import TemplateSelector from './TemplateSelector';
 import TextArea from './TextArea';
+
+const FormStyles = styled.form`
+  background: #eee;
+`;
 
 class Form extends React.Component {
   constructor(props) {

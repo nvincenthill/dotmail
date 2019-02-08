@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import StyledLabel from './Label';
+import { StyledLabel } from '../../elements';
 
 const TemplateSelector = ({
   name, children, templates, handleChange,
