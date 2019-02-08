@@ -103,6 +103,7 @@ class Form extends React.Component {
 Form.propTypes = {
   updateField: PropTypes.func.isRequired,
   updateDisplayedTemplate: PropTypes.func.isRequired,
+  updateResponse: PropTypes.func.isRequired,
   addRecipient: PropTypes.func.isRequired,
   form: PropTypes.instanceOf(Object).isRequired,
   currentUser: PropTypes.instanceOf(Object).isRequired,
