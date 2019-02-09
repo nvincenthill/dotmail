@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { StyledBtn } from '../../elements';
+
 const HeaderStyles = styled.div`
   display: flex;
   padding: 1rem;
@@ -35,14 +37,14 @@ class Header extends React.Component {
 
   render() {
     const logInButton = (
-      <button type="submit" onClick={e => this.handleClick(e)}>
+      <StyledBtn type="positive" onClick={e => this.handleClick(e)}>
         Log in
-      </button>
+      </StyledBtn>
     );
     const logOutButton = (
-      <button type="submit" onClick={e => this.handleClick(e)}>
+      <StyledBtn type="cancel" onClick={e => this.handleClick(e)}>
         Log out
-      </button>
+      </StyledBtn>
     );
     const { currentUser } = this.props;
 
