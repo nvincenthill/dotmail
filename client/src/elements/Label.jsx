@@ -19,7 +19,7 @@ const Label = styled.label`
   }
 
   textarea {
-    min-width: 50vw;
+    min-width: calc(100vw - 5rem);
   }
 `;
 

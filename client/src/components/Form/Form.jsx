@@ -8,6 +8,8 @@ import TemplateSelector from './TemplateSelector';
 import TextArea from './TextArea';
 
 const FormStyles = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
   background: #eee;
   padding: 1rem;
 `;
@@ -99,7 +101,7 @@ class Form extends React.Component {
         <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
           Message
         </TextArea>
-        <StyledBtn check="submit">Submit</StyledBtn>
+        <StyledBtn type="submit">Submit</StyledBtn>
       </FormStyles>
     );
   }

@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import { StyledBtn } from '../../elements';
+
+const RecipientStyles = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+
+  label {
+    display: block;
+  }
+
+  input {
+    margin: 0.25rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+`;
 
 class Recipient extends Component {
   constructor(props) {
@@ -35,7 +54,7 @@ class Recipient extends Component {
       firstName, lastName, preferred, email,
     } = this.state;
     return (
-      <div style={{ margin: '1rem' }}>
+      <RecipientStyles>
         <label htmlFor="firstName">
           First Name
           <input type="text" id="firstName" name="firstName" ref={firstName} />
@@ -44,19 +63,21 @@ class Recipient extends Component {
           Last Name
           <input type="text" id="lastName" name="lastName" ref={lastName} />
         </label>
-        <label style={{ display: 'block' }} htmlFor="preferred">
+        <label htmlFor="preferred">
           Preferred
           <input type="text" id="preferred" name="preferred" ref={preferred} />
         </label>
-        <label style={{ display: 'block' }} htmlFor="email">
+        <label htmlFor="email">
           Email
           <input type="text" id="email" name="email" ref={email} />
         </label>
-        <StyledBtn onClick={() => this.handleClick('ADD')}>Add</StyledBtn>
-        <StyledBtn type="cancel" onClick={this.handleClick}>
-          Remove
-        </StyledBtn>
-      </div>
+        <div className="button-container">
+          <StyledBtn onClick={() => this.handleClick('ADD')}>Add</StyledBtn>
+          <StyledBtn type="cancel" onClick={this.handleClick}>
+            Cancel
+          </StyledBtn>
+        </div>
+      </RecipientStyles>
     );
   }
 }

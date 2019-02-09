@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Recipient from './Recipient';
 import { StyledBtn } from '../../elements';
+
+const RecipientListStyles = styled.div`
+  display: flex;
+
+  h3 {
+    flex: 1 0 auto;
+  }
+`;
 
 class Recipients extends Component {
   constructor(props) {
@@ -45,11 +54,11 @@ class Recipients extends Component {
 
   render() {
     return (
-      <div>
+      <RecipientListStyles>
         <h3>Email Recipients</h3>
         {this.renderRecipients()}
         <StyledBtn onClick={this.appendRecipient}>Add Recipient</StyledBtn>
-      </div>
+      </RecipientListStyles>
     );
   }
 }

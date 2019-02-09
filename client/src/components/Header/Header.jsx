@@ -7,10 +7,16 @@ import { StyledBtn } from '../../elements';
 const HeaderStyles = styled.div`
   display: flex;
   padding: 1rem;
+  align-items: center;
   justify-content: center;
 
   img {
     max-width: 20%;
+  }
+
+  div {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .title {
