@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Recipients from '../Recipients/Recipients';
 import { CustomInput, StyledBtn } from '../../elements';
-import TemplateSelector from './TemplateSelector';
+import Selector from './Selector';
 import TextArea from './TextArea';
 
 const FormStyles = styled.form`
@@ -25,10 +25,17 @@ class Form extends React.Component {
   handleChange(e) {
     const { name, value } = e.target;
     const { updateField, updateDisplayedTemplate, templates } = this.props;
-    if (name !== 'templateSelector') {
-      updateField({ value, field: name });
-    } else {
-      updateDisplayedTemplate({ ...templates[value] });
+
+    switch (name) {
+      case 'templateSelector':
+        updateDisplayedTemplate({ ...templates[value] });
+        break;
+      case 'recipientGroupSelector':
+        // TODO: dispatch to update redux store
+        console.log('switching email groups');
+        break;
+      default:
+        updateField({ value, field: name });
     }
   }
 
@@ -78,14 +85,22 @@ class Form extends React.Component {
     const { value, subjectLine, message } = form;
     return (
       <FormStyles onSubmit={this.handleTemplateSubmission} method="POST">
-        <TemplateSelector
-          name="displayedTemplate"
+        <Selector
+          name="templateSelector"
           value={value}
           handleChange={this.handleChange}
-          templates={templates}
+          options={templates}
         >
           Select a template
-        </TemplateSelector>
+        </Selector>
+        <Selector
+          name="recipientGroupSelector"
+          value={value}
+          handleChange={this.handleChange}
+          options={recipients}
+        >
+          Select an recipient group
+        </Selector>
         <Recipients recipients={recipients} addRecipient={addRecipient} />
         <CustomInput type="text" name="name" value={name} onChange={this.handleChange}>
           Sender
