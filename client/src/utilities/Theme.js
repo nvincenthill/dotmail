@@ -6,6 +6,7 @@ const Theme = {
     accentColor1: 'rgb(238, 238, 238)',
     accentColor2: 'rgb(88, 128, 244)',
     accentColor3: 'rgb(238, 68, 67)',
+    accentColor4: 'rgb(0, 150, 0)',
   },
   fonts: {
     primary: 'Helvetica, sans-serif',
