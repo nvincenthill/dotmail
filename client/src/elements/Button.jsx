@@ -2,9 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const ButtonStyles = styled.button`
-  padding: 0.5rem 0.3rem;
+  padding: 0.5rem 0.5rem;
   display: block;
-  margin: 0.5rem;
   text-transform: uppercase;
   background: ${({ theme }) => theme.colors.accentColor2};
   border: none;
