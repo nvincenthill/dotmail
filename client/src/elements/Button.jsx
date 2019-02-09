@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const Button = styled.button`
+const ButtonStyles = styled.button`
   padding: 0.5rem 0.3rem;
   display: block;
   margin: 0.5rem auto;
@@ -50,13 +50,18 @@ const Button = styled.button`
         background: ${({ theme }) => theme.colors.accentColor3};
       `;
     }
+    if (type === 'positive') {
+      return css`
+        background: ${({ theme }) => theme.colors.accentColor4};
+      `;
+    }
   }}
 `;
 
 const StyledBtn = ({ children, ...otherProps }) => (
-  <Button type="button" {...otherProps}>
+  <ButtonStyles type="button" {...otherProps}>
     <span>{children}</span>
-  </Button>
+  </ButtonStyles>
 );
 
 export default StyledBtn;
