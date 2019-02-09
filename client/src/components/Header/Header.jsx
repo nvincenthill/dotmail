@@ -8,15 +8,27 @@ const HeaderStyles = styled.div`
   display: flex;
   padding: 1rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
   img {
-    max-width: 20%;
+    max-width: 25%;
   }
 
   div {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .logo-container {
+    flex: 2;
+  }
+
+  .title-container,
+  .button-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
 
   .title {
@@ -56,11 +68,15 @@ class Header extends React.Component {
 
     return (
       <HeaderStyles>
-        <div>
-          <img id="logo" src="/assets/emailbot.png" alt="logo did not load" />
-          <h1 className="title">EmailBot</h1>
+        <div className="title-container">
+          <h1 className="title">EMAILBOT</h1>
         </div>
-        <div>{currentUser.isUserAuthenticated ? logOutButton : logInButton}</div>
+        <div className="logo-container">
+          <img id="logo" src="/assets/emailbot.png" alt="logo did not load" />
+        </div>
+        <div className="button-container">
+          {currentUser.isUserAuthenticated ? logOutButton : logInButton}
+        </div>
       </HeaderStyles>
     );
   }
