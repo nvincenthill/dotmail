@@ -9,8 +9,8 @@ const Selector = ({
   <StyledLabel htmlFor={name}>
     {children}
     <select id={name} name={name} onChange={handleChange}>
-      {options.map(option => (
-        <option value={option.id} key={option.name}>
+      {options.map((option, idx) => (
+        <option value={option.id} key={idx}>
           {option.name}
         </option>
       ))}
