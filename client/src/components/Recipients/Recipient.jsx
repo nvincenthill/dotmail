@@ -6,6 +6,7 @@ import { StyledBtn } from '../../elements';
 const RecipientStyles = styled.div`
   display: flex;
   flex-flow: column wrap;
+  flex: 0 0 100%;
 
   label {
     display: block;

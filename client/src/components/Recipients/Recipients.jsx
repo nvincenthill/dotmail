@@ -7,9 +7,17 @@ import { StyledBtn } from '../../elements';
 
 const RecipientListStyles = styled.div`
   display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 
-  h3 {
-    flex: 1 0 auto;
+  .recipients-title,
+  .add-recipient-button {
+    flex: 0 0 100%;
+  }
+
+  .add-recipient-button {
+    max-width: 50vw;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -55,9 +63,10 @@ class Recipients extends Component {
   render() {
     return (
       <RecipientListStyles>
-        <h3>Email Recipients</h3>
         {this.renderRecipients()}
-        <StyledBtn onClick={this.appendRecipient}>Add Recipient</StyledBtn>
+        <StyledBtn className="add-recipient-button" onClick={this.appendRecipient}>
+          Add Additional Recipient
+        </StyledBtn>
       </RecipientListStyles>
     );
   }
