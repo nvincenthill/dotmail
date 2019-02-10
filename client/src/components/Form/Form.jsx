@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Recipients from '../Recipients/Recipients';
@@ -7,11 +7,19 @@ import { CustomInput, StyledBtn } from '../../elements';
 import Selector from './Selector';
 import TextArea from './TextArea';
 
+import { Theme } from '../../utilities';
+
 const FormStyles = styled.form`
   display: flex;
   flex-flow: column nowrap;
   background: #eee;
   padding: 1rem;
+
+  .submit-button {
+    width: 50vw;
+    margin: 0 auto;
+    background: ${({ theme }) => theme.colors.accentColor4};
+  }
 `;
 
 class Form extends React.Component {
@@ -84,40 +92,44 @@ class Form extends React.Component {
     const { name } = currentUser;
     const { value, subjectLine, message } = form;
     return (
-      <FormStyles onSubmit={this.handleTemplateSubmission} method="POST">
-        <Selector
-          name="templateSelector"
-          value={value}
-          handleChange={this.handleChange}
-          options={templates}
-        >
-          Select a template
-        </Selector>
-        <Selector
-          name="recipientGroupSelector"
-          value={value}
-          handleChange={this.handleChange}
-          options={recipients}
-        >
-          Select an recipient group
-        </Selector>
-        <Recipients recipients={recipients} addRecipient={addRecipient} />
-        <CustomInput type="text" name="name" value={name} onChange={this.handleChange}>
-          Sender
-        </CustomInput>
-        <CustomInput
-          name="subjectLine"
-          value={subjectLine}
-          onChange={this.handleChange}
-          type="text"
-        >
-          Subject
-        </CustomInput>
-        <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
-          Message
-        </TextArea>
-        <StyledBtn type="submit">Submit</StyledBtn>
-      </FormStyles>
+      <ThemeProvider theme={Theme}>
+        <FormStyles onSubmit={this.handleTemplateSubmission} method="POST">
+          <Selector
+            name="templateSelector"
+            value={value}
+            handleChange={this.handleChange}
+            options={templates}
+          >
+            Select a template
+          </Selector>
+          <Selector
+            name="recipientGroupSelector"
+            value={value}
+            handleChange={this.handleChange}
+            options={recipients}
+          >
+            Select an recipient group
+          </Selector>
+          <Recipients recipients={recipients} addRecipient={addRecipient} />
+          <CustomInput type="text" name="name" value={name} onChange={this.handleChange}>
+            Sender
+          </CustomInput>
+          <CustomInput
+            name="subjectLine"
+            value={subjectLine}
+            onChange={this.handleChange}
+            type="text"
+          >
+            Subject
+          </CustomInput>
+          <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
+            Message
+          </TextArea>
+          <StyledBtn className="submit-button" type="submit">
+            Submit
+          </StyledBtn>
+        </FormStyles>
+      </ThemeProvider>
     );
   }
 }
