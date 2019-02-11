@@ -16,4 +16,13 @@ const Above = Object.keys(sizes).reduce((acc, label) => {
   return acc;
 }, {});
 
-export default Above;
+const Below = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${sizes[label]}px) {
+      ${css(...args)}
+    }
+  `;
+  return acc;
+}, {});
+
+export { Above, Below };

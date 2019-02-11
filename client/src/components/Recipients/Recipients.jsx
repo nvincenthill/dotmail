@@ -7,17 +7,14 @@ import { StyledBtn } from '../../elements';
 
 const RecipientListStyles = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
   justify-content: center;
-
-  .recipients-title,
-  .add-recipient-button {
-    flex: 0 0 100%;
-  }
 
   .add-recipient-button {
     max-width: 50vw;
     margin-bottom: 0.5rem;
+    align-self: center;
+    justify-content: center;
   }
 `;
 
