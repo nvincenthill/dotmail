@@ -1,4 +1,4 @@
-import { ADD_RECIPIENT } from '../actions/actionTypes';
+import { ADD_RECIPIENT, DELETE_RECIPIENTS } from '../actions/actionTypes';
 
 const initialState = [];
 
@@ -14,6 +14,9 @@ export default function recipientsReducer(state = initialState, action) {
       email,
     };
     return [...state, newRecipient];
+  }
+  if (type === DELETE_RECIPIENTS) {
+    return [];
   }
   return state;
 }
