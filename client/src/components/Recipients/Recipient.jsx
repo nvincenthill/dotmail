@@ -13,9 +13,9 @@ const RecipientContainer = styled.div`
   max-width: 4rem;
   grid-template-columns: 15rem 15rem;
   grid-template-areas:
-    "firstName lastName"
-    "preferred email"
-    "add       cancel";
+    'firstName lastName'
+    'preferred email'
+    'add       cancel';
   grid-gap: 0.5rem;
   ${Below.small`
     grid-template-columns: 15rem;
@@ -31,7 +31,7 @@ const RecipientContainer = styled.div`
 
 const Input = styled.input`
   grid-area: ${({ area }) => area};
-`
+`;
 
 const GridElement = styled.div`
   grid-area: ${({ area }) => area};
@@ -71,12 +71,35 @@ class Recipient extends Component {
     } = this.state;
     return (
       <RecipientContainer>
-        <Input placeholder="Name" area="firstName" type="text" id="firstName" name="firstName" ref={firstName} />
-        <Input placeholder="Last Name" area="lastName"type="text" id="lastName" name="lastName" ref={lastName} />
-        <Input placeholder="Preferred" area="preferred" type="text" id="preferred" name="preferred" ref={preferred} />
+        <Input
+          placeholder="Name"
+          area="firstName"
+          type="text"
+          id="firstName"
+          name="firstName"
+          ref={firstName}
+        />
+        <Input
+          placeholder="Last Name"
+          area="lastName"
+          type="text"
+          id="lastName"
+          name="lastName"
+          ref={lastName}
+        />
+        <Input
+          placeholder="Preferred"
+          area="preferred"
+          type="text"
+          id="preferred"
+          name="preferred"
+          ref={preferred}
+        />
         <Input placeholder="E-mail" area="email" type="text" id="email" name="email" ref={email} />
         <GridElement area="add">
-          <StyledBtn align="center" onClick={() => this.handleClick('ADD')}>Add</StyledBtn>
+          <StyledBtn align="center" onClick={() => this.handleClick('ADD')}>
+            Add
+          </StyledBtn>
         </GridElement>
         <GridElement area="cancel">
           <StyledBtn align="center" type="cancel" onClick={this.handleClick}>
