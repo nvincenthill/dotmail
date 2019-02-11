@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { StyledBtn } from '../../elements';
 
 import { Below } from '../../utilities';
 
+const slideUp = keyframes`
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+`;
+
 const RecipientContainer = styled.div`
   margin: 1rem auto;
+  padding: 0.75rem;
   align-self: center;
   justify-content: center;
   display: grid;
-  max-width: 4rem;
+  box-shadow: ${({ theme }) => theme.elevations.med};
+  border: 1px solid ${({ theme }) => theme.colors.accentColor5};
+  animation: ${slideUp} 0.4s ease;
   grid-template-columns: 15rem 15rem;
   grid-template-areas:
     'firstName lastName'
@@ -31,6 +45,10 @@ const RecipientContainer = styled.div`
 
 const Input = styled.input`
   grid-area: ${({ area }) => area};
+  border: 0.01rem solid ${({ theme }) => theme.colors.accentColor5};
+  :focus {
+    box-shadow: 0 0 0.01rem ${({ theme }) => theme.colors.accentColor5};
+  }
 `;
 
 const GridElement = styled.div`
@@ -95,7 +113,7 @@ class Recipient extends Component {
           name="preferred"
           ref={preferred}
         />
-        <Input placeholder="E-mail" area="email" type="text" id="email" name="email" ref={email} />
+        <Input placeholder="Email" area="email" type="text" id="email" name="email" ref={email} />
         <GridElement area="add">
           <StyledBtn align="center" onClick={() => this.handleClick('ADD')}>
             Add
