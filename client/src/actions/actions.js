@@ -45,6 +45,13 @@ export function deleteRecipients() {
   };
 }
 
+export function removeRecipient(payload) {
+  return {
+    type: types.REMOVE_RECIPIENT,
+    i: payload.i,
+  };
+}
+
 export function updateResponse(response) {
   return {
     type: types.UPDATE_RESPONSE,

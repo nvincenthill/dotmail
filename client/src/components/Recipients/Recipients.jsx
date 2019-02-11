@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Recipient from './Recipient';
+import AddedRecipients from './AddedRecipients';
 import { StyledBtn } from '../../elements';
 
 const RecipientListStyles = styled.div`
@@ -26,7 +27,8 @@ class Recipients extends Component {
       id: 0,
     };
     this.appendRecipient = this.appendRecipient.bind(this);
-    this.removeRecipient = this.removeRecipient.bind(this);
+    this.cancelRecipient = this.cancelRecipient.bind(this);
+    this.renderAddedRecipients = this.renderAddedRecipients.bind(this);
   }
 
   appendRecipient() {
@@ -37,7 +39,7 @@ class Recipients extends Component {
     });
   }
 
-  removeRecipient(i) {
+  cancelRecipient(i) {
     const { inputRecipients } = this.state;
     this.setState({
       inputRecipients: [...inputRecipients.slice(0, i), ...inputRecipients.slice(i + 1)],
@@ -50,17 +52,23 @@ class Recipients extends Component {
     return inputRecipients.map((recipient, i) => (
       <Recipient
         index={i}
-        removeRecipient={this.removeRecipient}
+        cancelRecipient={this.cancelRecipient}
         addRecipient={addRecipient}
         key={recipient.id}
       />
     ));
   }
 
+  renderAddedRecipients() {
+    const { recipients, removeRecipient } = this.props;
+    return <AddedRecipients recipients={recipients} removeRecipient={removeRecipient} />;
+  }
+
   render() {
     return (
       <RecipientListStyles>
         {this.renderRecipients()}
+        {this.renderAddedRecipients()}
         <StyledBtn className="add-recipient-button" onClick={this.appendRecipient}>
           Add Additional Recipient
         </StyledBtn>
@@ -71,6 +79,8 @@ class Recipients extends Component {
 
 Recipients.propTypes = {
   addRecipient: PropTypes.func.isRequired,
+  removeRecipient: PropTypes.func.isRequired,
+  recipients: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Recipients;

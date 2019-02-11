@@ -1,47 +1,8 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { StyledBtn } from '../../elements';
-
-import { Below } from '../../utilities';
-
-const slideUp = keyframes`
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-`;
-
-const RecipientContainer = styled.div`
-  margin: 1rem auto;
-  padding: 0.75rem;
-  align-self: center;
-  justify-content: center;
-  display: grid;
-  box-shadow: ${({ theme }) => theme.elevations.med};
-  border: 1px solid ${({ theme }) => theme.colors.accentColor5};
-  animation: ${slideUp} 0.4s ease;
-  grid-template-columns: 15rem 15rem;
-  grid-template-areas:
-    'firstName lastName'
-    'preferred email'
-    'add       cancel';
-  grid-gap: 0.5rem;
-  ${Below.small`
-    grid-template-columns: 15rem;
-    grid-template-areas:
-      "firstName"
-      "lastName"
-      "preferred"
-      "email"
-      "add"
-      "cancel";
-  `}
-`;
+import RecipientContainer from './RecipientContainer';
 
 const Input = styled.input`
   grid-area: ${({ area }) => area};
@@ -68,7 +29,7 @@ class Recipient extends Component {
   }
 
   handleClick(action) {
-    const { addRecipient, removeRecipient, index } = this.props;
+    const { addRecipient, cancelRecipient, index } = this.props;
     const {
       firstName, lastName, preferred, email,
     } = this.state;
@@ -80,7 +41,7 @@ class Recipient extends Component {
         email,
       });
     }
-    removeRecipient(index);
+    cancelRecipient(index);
   }
 
   render() {
