@@ -31,10 +31,20 @@
     },
     {
       "id": 3,
-      "name": "tracking",
+      "name": "Tracking",
       "templateName": "tracking",
       "type": "business",
       "subjectLine": "Your EllaBooty cream has been shipped!",
+      "greeting": "none,",
+      "message": "none",
+      "salutation": "none"
+    },
+    {
+      "id": 4,
+      "name": "Purchase",
+      "templateName": "purchase",
+      "type": "business",
+      "subjectLine": "It's your chance to try EllaBooty with $15 off!",
       "greeting": "none,",
       "message": "none",
       "salutation": "none"
