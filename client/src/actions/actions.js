@@ -38,3 +38,16 @@ export function updateResponse(response) {
     data: response.data,
   };
 }
+
+export function addTemplate(template) {
+  return {
+    type: types.ADD_TEMPLATE,
+    template,
+  };
+}
+
+export function deleteTemplates() {
+  return {
+    type: types.DELETE_TEMPLATES,
+  };
+}
