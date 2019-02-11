@@ -21,12 +21,27 @@ export function updateUser({
 }
 
 export function addRecipient(payload) {
+  if (payload.firstName.current !== undefined) {
+    return {
+      type: types.ADD_RECIPIENT,
+      firstName: payload.firstName.current.value,
+      lastName: payload.lastName.current.value,
+      preferred: payload.preferred.current.value,
+      email: payload.email.current.value,
+    };
+  }
   return {
     type: types.ADD_RECIPIENT,
-    firstName: payload.firstName.current.value,
-    lastName: payload.lastName.current.value,
-    preferred: payload.preferred.current.value,
-    email: payload.email.current.value,
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    preferred: payload.preferred,
+    email: payload.email,
+  };
+}
+
+export function deleteRecipients() {
+  return {
+    type: types.DELETE_RECIPIENTS,
   };
 }
 
