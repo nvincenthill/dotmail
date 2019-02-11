@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -30,15 +31,27 @@ class App extends React.Component {
     this.writeUserData = this.writeUserData.bind(this);
   }
 
-  componentDidMount() {
-    // this.ref = base.bindCollection('userData', {
-    //   context: this,
-    //   state: 'userData',
-    //   withRefs: true,
-    //   then() {
-    //     this.setState({ isLoading: false });
-    //   },
-    // });
+  getTemplates() {
+    const { addTemplate } = this.props;
+    const templatesRef = db.collection('templates');
+
+    // TODO: Only get templates that match authenticated user's role
+    templatesRef
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }
+
+        snapshot.forEach((doc) => {
+          console.log(doc.id, '=>', doc.data());
+          addTemplate(doc.data());
+        });
+      })
+      .catch((err) => {
+        console.log('Error getting documents', err);
+      });
   }
 
   authenticate(provider) {
@@ -52,7 +65,7 @@ class App extends React.Component {
   async authHandler(authData) {
     // ! user is now authenticated and but not trusted
     // TODO: change firestore database read/write rules
-    const { updateUser } = this.props;
+    const { updateUser, deleteTemplates } = this.props;
     updateUser({
       name: authData.additionalUserInfo.profile.name,
       email: authData.additionalUserInfo.profile.email,
@@ -60,16 +73,9 @@ class App extends React.Component {
       isUserAuthenticated: true,
     });
     if (!authData.additionalUserInfo.isNewUser) {
-      // TODO: fetch data from db
-      db.collection('usersData')
-        .doc(`${authData.user.uid}`)
-        .get()
-        .then((docRef) => {
-          console.log('Document written with ID: ', docRef.id);
-        })
-        .catch((error) => {
-          console.error('Error adding document: ', error);
-        });
+      deleteTemplates();
+      // fetch templates data from db
+      this.getTemplates();
     } else {
       // TODO: handle new user
       this.writeUserData();
@@ -122,5 +128,9 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  addTemplate: PropTypes.func.isRequired,
+};
 
 export default App;
