@@ -5,12 +5,14 @@ import {
   updateDisplayedTemplate,
   addRecipient,
   updateResponse,
+  deleteRecipients,
 } from '../actions/actions';
 
 const mapStateToProps = state => ({
   form: state.formReducer,
   templates: state.templatesReducer,
   recipients: state.recipientsReducer,
+  emailGroups: state.emailGroupsReducer,
   currentUser: { name: state.userReducer.name, email: state.userReducer.email },
 });
 
@@ -26,6 +28,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addRecipient: (q) => {
     dispatch(addRecipient(q));
+  },
+  deleteRecipients: (q) => {
+    dispatch(deleteRecipients(q));
   },
 });
 
