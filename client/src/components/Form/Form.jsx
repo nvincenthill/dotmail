@@ -28,6 +28,7 @@ class Form extends React.Component {
     this.state = {};
     this.handleChange = this.handleChange.bind(this);
     this.handleTemplateSubmission = this.handleTemplateSubmission.bind(this);
+    this.handleEmailGroupSelection = this.handleEmailGroupSelection.bind(this);
   }
 
   handleChange(e) {
@@ -39,11 +40,18 @@ class Form extends React.Component {
         updateDisplayedTemplate({ ...templates[value] });
         break;
       case 'recipientGroupSelector':
-        // TODO: dispatch to update redux store
-        console.log('switching email groups');
+        this.handleEmailGroupSelection(value);
         break;
       default:
         updateField({ value, field: name });
+    }
+  }
+
+  handleEmailGroupSelection(value) {
+    const { deleteRecipients, addRecipient, emailGroups } = this.props;
+    deleteRecipients();
+    for (let i = 0; i < emailGroups[value].recipients.length; i += 1) {
+      addRecipient(emailGroups[value].recipients[i]);
     }
   }
 
@@ -87,7 +95,7 @@ class Form extends React.Component {
 
   render() {
     const {
-      templates, currentUser, form, recipients, addRecipient,
+      templates, currentUser, form, recipients, emailGroups, addRecipient,
     } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, message } = form;
@@ -106,7 +114,7 @@ class Form extends React.Component {
             name="recipientGroupSelector"
             value={value}
             handleChange={this.handleChange}
-            options={recipients}
+            options={emailGroups}
           >
             Select recipients
           </Selector>
@@ -139,9 +147,11 @@ Form.propTypes = {
   updateDisplayedTemplate: PropTypes.func.isRequired,
   updateResponse: PropTypes.func.isRequired,
   addRecipient: PropTypes.func.isRequired,
+  deleteRecipients: PropTypes.func.isRequired,
   form: PropTypes.instanceOf(Object).isRequired,
   currentUser: PropTypes.instanceOf(Object).isRequired,
   templates: PropTypes.instanceOf(Object).isRequired,
+  emailGroups: PropTypes.instanceOf(Object).isRequired,
   recipients: PropTypes.instanceOf(Object).isRequired,
 };
 
