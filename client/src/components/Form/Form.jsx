@@ -13,7 +13,7 @@ const FormStyles = styled.form`
   display: flex;
   flex-flow: column nowrap;
   background: #eee;
-  padding: 1rem;
+  padding: 2rem 1rem;
 
   .submit-button {
     width: 50vw;
@@ -108,7 +108,7 @@ class Form extends React.Component {
             handleChange={this.handleChange}
             options={recipients}
           >
-            Select an recipient group
+            Select recipients
           </Selector>
           <Recipients recipients={recipients} addRecipient={addRecipient} />
           <CustomInput type="text" name="name" value={name} onChange={this.handleChange}>
