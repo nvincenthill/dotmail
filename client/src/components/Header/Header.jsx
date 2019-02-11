@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { StyledBtn } from '../../elements';
+import { Below } from '../../utilities';
 
 const HeaderStyles = styled.div`
   display: flex;
   padding: 1rem;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
 
   img {
     max-width: 25%;
@@ -20,20 +20,32 @@ const HeaderStyles = styled.div`
     margin-right: auto;
   }
 
-  .logo-container {
+  .title-container {
     flex: 2;
+    display: flex;
+    justify-content: center;
   }
 
-  .title-container,
   .button-container {
     flex: 1;
     display: flex;
     justify-content: center;
   }
 
-  .title {
-    margin: 0;
+  .logo-container {
+    flex: 1;
   }
+
+  .title {
+    margin: 1rem;
+  }
+
+  ${Below.small`
+    flex-flow: column wrap;
+    img {
+      max-width: 25vw;
+    }
+  `}
 `;
 class Header extends React.Component {
   constructor() {
@@ -68,11 +80,11 @@ class Header extends React.Component {
 
     return (
       <HeaderStyles>
-        <div className="title-container">
-          <h1 className="title">EMAILBOT</h1>
-        </div>
         <div className="logo-container">
           <img id="logo" src="/assets/emailbot.png" alt="logo did not load" />
+        </div>
+        <div className="title-container">
+          <h1 className="title">EMAILBOT</h1>
         </div>
         <div className="button-container">
           {currentUser.isUserAuthenticated ? logOutButton : logInButton}
