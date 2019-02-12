@@ -43,13 +43,13 @@ const ButtonStyles = styled.button`
     right: 0;
   }
 
-  ${({ type }) => {
-    if (type === 'cancel') {
+  ${({ category }) => {
+    if (category === 'cancel') {
       return css`
         background: ${({ theme }) => theme.colors.accentColor3};
       `;
     }
-    if (type === 'positive') {
+    if (category === 'positive') {
       return css`
         background: ${({ theme }) => theme.colors.accentColor4};
       `;
