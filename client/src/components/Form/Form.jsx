@@ -96,7 +96,7 @@ class Form extends React.Component {
 
   render() {
     const {
-      templates, currentUser, form, recipients, addRecipient, removeRecipient, emailGroups
+      templates, currentUser, form, recipients, addRecipient, removeRecipient, emailGroups,
     } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, message } = form;
