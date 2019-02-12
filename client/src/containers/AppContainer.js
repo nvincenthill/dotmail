@@ -1,6 +1,13 @@
 import { connect } from 'react-redux';
 import App from '../components/App/App';
-import { updateUser, addTemplate, deleteTemplates } from '../actions/actions';
+import {
+  updateUser,
+  addTemplate,
+  deleteTemplates,
+  addEmailGroup,
+  deleteEmailGroups,
+  deleteRecipients,
+} from '../actions/actions';
 
 const mapStateToProps = state => ({
   currentUser: state.userReducer,
@@ -13,8 +20,17 @@ const mapDispatchToProps = dispatch => ({
   addTemplate: (q) => {
     dispatch(addTemplate(q));
   },
+  addEmailGroup: (q) => {
+    dispatch(addEmailGroup(q));
+  },
   deleteTemplates: (q) => {
     dispatch(deleteTemplates(q));
+  },
+  deleteEmailGroups: (q) => {
+    dispatch(deleteEmailGroups(q));
+  },
+  deleteRecipients: (q) => {
+    dispatch(deleteRecipients(q));
   },
 });
 
