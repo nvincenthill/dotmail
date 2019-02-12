@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { StyledBtn } from '../../elements';
 import RecipientContainer from './RecipientContainer';
 
-import { slideUp, slideDown } from '../../utilities';
+import { slideUp, fadeOut } from '../../utilities';
 
 const Input = styled.input`
   grid-area: ${({ area }) => area};
@@ -45,10 +45,10 @@ class AddRecipient extends Component {
       });
     }
 
-    const callback = () => setTimeout(() => cancelRecipient(index), 150);
+    const callback = () => setTimeout(() => cancelRecipient(index), 100);
     this.setState(
       {
-        animation: slideDown,
+        animation: fadeOut,
       },
       callback,
     );

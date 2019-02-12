@@ -10,7 +10,7 @@ const RecipientContainer = styled.div`
   display: grid;
   box-shadow: ${({ theme }) => theme.elevations.med};
   border: 1px solid ${({ theme }) => theme.colors.accentColor5};
-  animation: ${({ animation }) => animation} 0.15s ease;
+  animation: ${({ animation }) => animation} 0.25s ease;
   grid-template-columns: 15rem 15rem;
   grid-template-areas:
     'firstName lastName'
