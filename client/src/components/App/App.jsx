@@ -21,14 +21,17 @@ const AppStyles = styled.div`
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: false,
-    };
+    this.state = {};
 
     this.authenticate = this.authenticate.bind(this);
     this.logOut = this.logOut.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.writeUserData = this.writeUserData.bind(this);
+  }
+
+  getDataFromFirestore() {
+    this.getTemplates();
+    this.getEmailGroups();
   }
 
   getTemplates() {
@@ -52,6 +55,42 @@ class App extends React.Component {
       });
   }
 
+  getEmailGroups() {
+    const { addEmailGroup } = this.props;
+    const emailGroupsRef = db.collection('emailGroups');
+
+    emailGroupsRef
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }
+
+        snapshot.forEach((doc) => {
+          const group = doc.data();
+          group.recipients = [];
+          doc.ref
+            .collection('recipients')
+            .get()
+            .then((recipientSnapshot) => {
+              if (recipientSnapshot.empty) {
+                console.log('No matching documents.');
+                return;
+              }
+              recipientSnapshot.forEach((contact) => {
+                group.recipients.push(contact.data());
+              });
+            });
+
+          addEmailGroup(group);
+        });
+      })
+      .catch((err) => {
+        console.log('Error getting documents', err);
+      });
+  }
+
   authenticate(provider) {
     const authProvider = new firebase.auth[`${provider}AuthProvider`]();
     firebaseApp
@@ -61,9 +100,7 @@ class App extends React.Component {
   }
 
   async authHandler(authData) {
-    // ! user is now authenticated and but not trusted
-    // TODO: change firestore database read/write rules
-    const { updateUser, deleteTemplates } = this.props;
+    const { updateUser, deleteTemplates, deleteEmailGroups } = this.props;
     updateUser({
       name: authData.additionalUserInfo.profile.name,
       email: authData.additionalUserInfo.profile.email,
@@ -71,28 +108,32 @@ class App extends React.Component {
       isUserAuthenticated: true,
     });
     if (!authData.additionalUserInfo.isNewUser) {
-      deleteTemplates();
-      // fetch templates data from db
-      this.getTemplates();
+      // TODO: handle existing user
     } else {
       // TODO: handle new user
       this.writeUserData();
     }
 
-    base.addToCollection('userData', {
-      hello: 'world',
-    });
+    // clear examples and fetch data from db
+    deleteTemplates();
+    deleteEmailGroups();
+    this.getDataFromFirestore();
   }
 
   async logOut() {
     await firebase.auth().signOut();
-    const { updateUser } = this.props;
+    const {
+      updateUser, deleteTemplates, deleteEmailGroups, deleteRecipients,
+    } = this.props;
     updateUser({
       name: '',
       email: '',
       uid: '',
       isUserAuthenticated: false,
     });
+    deleteTemplates();
+    deleteEmailGroups();
+    deleteRecipients();
   }
 
   writeUserData() {
@@ -129,6 +170,7 @@ class App extends React.Component {
 
 App.propTypes = {
   addTemplate: PropTypes.func.isRequired,
+  addEmailGroup: PropTypes.func.isRequired,
 };
 
 export default App;
