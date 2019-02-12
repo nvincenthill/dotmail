@@ -56,8 +56,16 @@ class Form extends React.Component {
   }
 
   handleTemplateSubmission(e) {
-    console.log('trigerred');
     e.preventDefault();
+    const {
+      form, currentUser, recipients, updateResponse,
+    } = this.props;
+    const result = confirm(`Are you sure you want to send emails to ${recipients.length} people?`);
+
+    if (!result) {
+      return;
+    }
+
     function postData(url = '', data = {}) {
       return fetch(url, {
         method: 'POST',
@@ -77,10 +85,6 @@ class Form extends React.Component {
     const domain = 'localhost';
     const port = 3000;
     const endpoint = '/api/send';
-
-    const {
-      form, currentUser, recipients, updateResponse,
-    } = this.props;
     const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
