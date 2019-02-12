@@ -43,9 +43,7 @@ class App extends React.Component {
           console.log('No matching documents.');
           return;
         }
-
         snapshot.forEach((doc) => {
-          console.log(doc.id, '=>', doc.data());
           addTemplate(doc.data());
         });
       })
