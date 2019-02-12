@@ -11,15 +11,13 @@ const slideUp = keyframes`
   }
 `;
 
-const slideDown = keyframes`
+const fadeOut = keyframes`
   0% {
       opacity: 1;
-      transform: translateY(0);
   }
   100% {
       opacity: 0;
-      transform: translateY(20px);
   }
 `;
 
-export { slideUp, slideDown };
+export { slideUp, fadeOut };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { slideUp, slideDown } from '../../utilities';
+import { slideUp, fadeOut } from '../../utilities';
 
 const StyledRecipient = styled.h6`
   margin: 0;
@@ -50,7 +50,7 @@ class Recipient extends Component {
 
     this.setState(
       {
-        animation: slideDown,
+        animation: fadeOut,
       },
       callback,
     );

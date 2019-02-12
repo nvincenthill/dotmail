@@ -65,10 +65,11 @@ class Recipients extends Component {
   }
 
   render() {
+    const { recipients } = this.props;
     return (
       <RecipientListStyles>
         {this.renderRecipients()}
-        {this.renderAddedRecipients()}
+        {recipients.length > 0 && this.renderAddedRecipients()}
         <StyledBtn className="add-recipient-button" onClick={this.appendRecipient}>
           Add Additional Recipient
         </StyledBtn>
