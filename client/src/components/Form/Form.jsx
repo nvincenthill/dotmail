@@ -56,6 +56,7 @@ class Form extends React.Component {
   }
 
   handleTemplateSubmission(e) {
+    console.log('trigerred');
     e.preventDefault();
     function postData(url = '', data = {}) {
       return fetch(url, {
@@ -137,7 +138,7 @@ class Form extends React.Component {
           <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
             Message
           </TextArea>
-          <StyledBtn className="submit-button" type="submit">
+          <StyledBtn className="submit-button" category="positive" type="submit">
             Submit
           </StyledBtn>
         </FormStyles>

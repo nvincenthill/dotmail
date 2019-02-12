@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Recipient from './Recipient';
+import Recipient from './AddRecipient';
 import AddedRecipients from './AddedRecipients';
 import { StyledBtn } from '../../elements';
 

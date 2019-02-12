@@ -67,12 +67,12 @@ class Header extends React.Component {
 
   render() {
     const logInButton = (
-      <StyledBtn type="positive" onClick={e => this.handleClick(e)}>
+      <StyledBtn category="positive" onClick={e => this.handleClick(e)}>
         Log in
       </StyledBtn>
     );
     const logOutButton = (
-      <StyledBtn type="cancel" onClick={e => this.handleClick(e)}>
+      <StyledBtn category="cancel" onClick={e => this.handleClick(e)}>
         Log out
       </StyledBtn>
     );
