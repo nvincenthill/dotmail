@@ -73,3 +73,16 @@ export function deleteTemplates() {
     type: types.DELETE_TEMPLATES,
   };
 }
+
+export function addEmailGroup(emailGroup) {
+  return {
+    type: types.ADD_EMAIL_GROUP,
+    group: emailGroup,
+  };
+}
+
+export function deleteEmailGroups() {
+  return {
+    type: types.DELETE_EMAIL_GROUPS,
+  };
+}
