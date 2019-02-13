@@ -1,4 +1,4 @@
-# EMAILBOT
+# dotmail
 
 This is a FERN-stack app to programatically send responsively-designed emails with nodemailer + mjml templates
 
@@ -44,11 +44,12 @@ npm test
 
 ## Deployment
 
-Not currently deployed
+Not currently deployed - http://dotmail.tech
 
 ## Built With
 
-- [React.js](https://https://reactjs.org/) - The front-end MVC framework
+- [Firebase](https://firebase.google.com/) - The OAuth and real-time database
+- [React.js](https://reactjs.org/) - The front-end MVC framework
 - [Express](https://expressjs.com/) - The server
 - [Node.js](https://nodejs.org/) - The back-end
 - [Jest](https://jestjs.io/) - The testing framework
@@ -63,9 +64,9 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 
 - **Nicholas Vincent-Hill** - [Nicholas Vincent-Hill](http://nickvh.tech/)
 
-- **Josh Elder** - [Josh Elder](https://github.com/jcelder/)
-
 - **Fernando De La Madrid** - [Fernando De La Madrid](https://github.com/ferdelamad/)
+
+- **Josh Elder** - [Josh Elder](https://github.com/jcelder/)
 
 **Our Trello Board** - [Check out what we're working on next](https://trello.com/b/PdQwFo3v/emailbot)
 
