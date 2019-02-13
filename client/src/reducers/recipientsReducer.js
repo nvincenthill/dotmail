@@ -19,7 +19,6 @@ export default function recipientsReducer(state = initialState, action) {
     return [];
   }
   if (type === REMOVE_RECIPIENT) {
-    console.log(i);
     return [...state.slice(0, i), ...state.slice(i + 1)];
   }
   return state;
