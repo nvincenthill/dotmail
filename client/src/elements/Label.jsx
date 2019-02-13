@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LabelContainer = styled.div`
-  margin: 0.25rem auto;
+  margin: 1rem auto;
 `;
 
 const Label = styled.label`

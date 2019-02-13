@@ -10,10 +10,10 @@ import TextArea from './TextArea';
 import { Theme } from '../../utilities';
 
 const FormStyles = styled.form`
-  display: flex;
+  display: inline-block;
   flex-flow: column nowrap;
   background: #eee;
-  padding: 2rem 1rem;
+  padding: 1rem 2rem 2rem 2rem;
 
   .submit-button {
     width: 50vw;
