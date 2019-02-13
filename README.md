@@ -1,6 +1,6 @@
 # EMAILBOT
 
-This is a MERN-stack app to programatically send responsively-designed emails with nodemailer + mjml templates
+This is a FERN-stack app to programatically send responsively-designed emails with nodemailer + mjml templates
 
 ## Getting Started
 
@@ -48,8 +48,6 @@ Not currently deployed
 
 ## Built With
 
-- [MongoDB](https://www.mongodb.com/) - The database
-- [Mongoose](https://mongoosejs.com/) - The database management tool
 - [React.js](https://https://reactjs.org/) - The front-end MVC framework
 - [Express](https://expressjs.com/) - The server
 - [Node.js](https://nodejs.org/) - The back-end
