@@ -6,18 +6,40 @@ import Recipient from './Recipient';
 
 const GridContainer = styled.div`
   margin: 1rem auto;
-  display: grid;
+  display: flex;
   align-self: center;
   justify-content: center;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 0.5rem;
+`;
+
+const RecipientsTable = styled.table`
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+
+  th,
+  td {
+    padding: 0.5rem;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.accentColor5};
+  }
 `;
 
 const AddedRecipients = ({ recipients, removeRecipient }) => (
   <GridContainer>
-    {recipients.map((recipient, i) => (
-      <Recipient removeRecipient={removeRecipient} recipient={recipient} i={i} key={i} />
-    ))}
+    <RecipientsTable>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        {recipients.map((recipient, i) => (
+          <Recipient removeRecipient={removeRecipient} recipient={recipient} i={i} key={i} />
+        ))}
+      </tbody>
+    </RecipientsTable>
   </GridContainer>
 );
 

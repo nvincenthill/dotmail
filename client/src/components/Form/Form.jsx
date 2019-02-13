@@ -17,7 +17,7 @@ const FormStyles = styled.form`
   padding: 0 2rem 2rem 2rem;
 
   .submit-button {
-    width: 50vw;
+    width: 50%;
     margin: 0 auto;
     background: ${({ theme }) => theme.colors.accentColor4};
   }
@@ -144,7 +144,7 @@ class Form extends React.Component {
           <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
             Message
           </TextArea>
-          <StyledBtn className="submit-button" category="positive" type="submit">
+          <StyledBtn isAnimated className="submit-button" category="positive" type="submit">
             Submit
           </StyledBtn>
         </FormStyles>

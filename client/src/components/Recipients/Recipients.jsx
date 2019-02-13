@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -8,14 +8,19 @@ import { StyledBtn } from '../../elements';
 
 const RecipientListStyles = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 
-  .add-recipient-button {
+  button {
     max-width: 50vw;
     margin-bottom: 0.5rem;
     align-self: center;
     justify-content: center;
+  }
+
+  .toggle-display {
+    margin-left: 1rem;
   }
 `;
 
@@ -25,10 +30,11 @@ class Recipients extends Component {
     this.state = {
       inputRecipients: [],
       id: 0,
+      isRecipientsTableDisplayed: false,
     };
     this.appendRecipient = this.appendRecipient.bind(this);
     this.cancelRecipient = this.cancelRecipient.bind(this);
-    this.renderAddedRecipients = this.renderAddedRecipients.bind(this);
+    this.toggleTableDisplay = this.toggleTableDisplay.bind(this);
   }
 
   appendRecipient() {
@@ -46,6 +52,12 @@ class Recipients extends Component {
     });
   }
 
+  toggleTableDisplay() {
+    this.setState(prevState => ({
+      isRecipientsTableDisplayed: !prevState.isRecipientsTableDisplayed,
+    }));
+  }
+
   renderRecipients() {
     const { inputRecipients } = this.state;
     const { addRecipient } = this.props;
@@ -59,21 +71,29 @@ class Recipients extends Component {
     ));
   }
 
-  renderAddedRecipients() {
-    const { recipients, removeRecipient } = this.props;
-    return <AddedRecipients recipients={recipients} removeRecipient={removeRecipient} />;
-  }
-
   render() {
-    const { recipients } = this.props;
+    const { isRecipientsTableDisplayed } = this.state;
+    const { recipients, removeRecipient } = this.props;
+    const toggleRecipientsButton = (
+      <StyledBtn onClick={this.toggleTableDisplay} area="showRecipients" className="toggle-display">
+        {!isRecipientsTableDisplayed ? 'Show Recipients' : 'Hide Recipients'}
+      </StyledBtn>
+    );
+    const recipientsTable = (
+      <AddedRecipients recipients={recipients} removeRecipient={removeRecipient} />
+    );
+
     return (
-      <RecipientListStyles>
+      <Fragment>
         {this.renderRecipients()}
-        {recipients.length > 0 && this.renderAddedRecipients()}
-        <StyledBtn className="add-recipient-button" onClick={this.appendRecipient}>
-          Add Additional Recipient
-        </StyledBtn>
-      </RecipientListStyles>
+        {isRecipientsTableDisplayed && recipientsTable}
+        <RecipientListStyles>
+          <StyledBtn area="addRecipient" onClick={this.appendRecipient}>
+            Add Additional Recipient
+          </StyledBtn>
+          {recipients.length > 0 && toggleRecipientsButton}
+        </RecipientListStyles>
+      </Fragment>
     );
   }
 }

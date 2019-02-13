@@ -86,12 +86,12 @@ class AddRecipient extends Component {
         />
         <Input placeholder="Email" area="email" type="text" id="email" name="email" ref={email} />
         <GridElement area="add">
-          <StyledBtn align="center" onClick={() => this.handleClick('ADD')}>
+          <StyledBtn isAnimated onClick={() => this.handleClick('ADD')}>
             Add
           </StyledBtn>
         </GridElement>
         <GridElement area="cancel">
-          <StyledBtn align="center" category="cancel" onClick={this.handleClick}>
+          <StyledBtn isAnimated category="cancel" onClick={this.handleClick}>
             Cancel
           </StyledBtn>
         </GridElement>
