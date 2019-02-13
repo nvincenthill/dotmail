@@ -7,7 +7,7 @@ const TextArea = ({
 }) => (
   <StyledLabel htmlFor={name}>
     {children}
-    <textarea id={name} name={name} value={value} {...otherProps} />
+    <textarea style={{ resize: 'vertical' }} id={name} name={name} value={value} {...otherProps} />
   </StyledLabel>
 );
 

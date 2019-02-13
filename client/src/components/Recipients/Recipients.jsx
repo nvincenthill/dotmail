@@ -86,7 +86,7 @@ class Recipients extends Component {
     return (
       <Fragment>
         {this.renderRecipients()}
-        {isRecipientsTableDisplayed && recipientsTable}
+        {isRecipientsTableDisplayed && recipients.length > 0 && recipientsTable}
         <RecipientListStyles>
           <StyledBtn area="addRecipient" onClick={this.appendRecipient}>
             Add Additional Recipient

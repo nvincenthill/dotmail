@@ -89,7 +89,15 @@ class AddRecipient extends Component {
             ref={preferred}
             required
           />
-          <Input placeholder="Email" area="email" type="email" id="email" name="email" ref={email} required/>
+          <Input
+            placeholder="Email"
+            area="email"
+            type="email"
+            id="email"
+            name="email"
+            ref={email}
+            required
+          />
           <GridElement area="add">
             <StyledBtn isAnimated type="submit">
               Add
