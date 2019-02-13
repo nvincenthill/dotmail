@@ -31,7 +31,8 @@ class AddRecipient extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(action) {
+  handleClick(e, action) {
+    e.preventDefault();
     const { addRecipient, cancelRecipient, index } = this.props;
     const {
       firstName, lastName, preferred, email,
@@ -59,43 +60,48 @@ class AddRecipient extends Component {
       firstName, lastName, preferred, email, animation,
     } = this.state;
     return (
-      <RecipientContainer animation={animation}>
-        <Input
-          placeholder="Name"
-          area="firstName"
-          type="text"
-          id="firstName"
-          name="firstName"
-          ref={firstName}
-        />
-        <Input
-          placeholder="Last Name"
-          area="lastName"
-          type="text"
-          id="lastName"
-          name="lastName"
-          ref={lastName}
-        />
-        <Input
-          placeholder="Preferred"
-          area="preferred"
-          type="text"
-          id="preferred"
-          name="preferred"
-          ref={preferred}
-        />
-        <Input placeholder="Email" area="email" type="text" id="email" name="email" ref={email} />
-        <GridElement area="add">
-          <StyledBtn isAnimated onClick={() => this.handleClick('ADD')}>
-            Add
-          </StyledBtn>
-        </GridElement>
-        <GridElement area="cancel">
-          <StyledBtn isAnimated category="cancel" onClick={this.handleClick}>
-            Cancel
-          </StyledBtn>
-        </GridElement>
-      </RecipientContainer>
+      <form onSubmit={e => this.handleClick(e, 'ADD')}>
+        <RecipientContainer animation={animation}>
+          <Input
+            placeholder="Name"
+            area="firstName"
+            type="text"
+            id="firstName"
+            name="firstName"
+            ref={firstName}
+            required
+          />
+          <Input
+            placeholder="Last Name"
+            area="lastName"
+            type="text"
+            id="lastName"
+            name="lastName"
+            ref={lastName}
+            required
+          />
+          <Input
+            placeholder="Preferred"
+            area="preferred"
+            type="text"
+            id="preferred"
+            name="preferred"
+            ref={preferred}
+            required
+          />
+          <Input placeholder="Email" area="email" type="email" id="email" name="email" ref={email} required/>
+          <GridElement area="add">
+            <StyledBtn isAnimated type="submit">
+              Add
+            </StyledBtn>
+          </GridElement>
+          <GridElement area="cancel">
+            <StyledBtn isAnimated category="cancel" onClick={this.handleClick}>
+              Cancel
+            </StyledBtn>
+          </GridElement>
+        </RecipientContainer>
+      </form>
     );
   }
 }

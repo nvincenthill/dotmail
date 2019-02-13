@@ -10,7 +10,7 @@ import ResponseContainer from '../../containers/ResponseContainer';
 
 import { Theme } from '../../utilities';
 
-const FormStyles = styled.form`
+const FormStyles = styled.div`
   display: inline-block;
   flex-flow: column nowrap;
   background: #eee;
@@ -101,13 +101,19 @@ class Form extends React.Component {
 
   render() {
     const {
-      templates, currentUser, form, recipients, addRecipient, removeRecipient, emailGroups,
+      templates,
+      currentUser,
+      form,
+      recipients,
+      addRecipient,
+      removeRecipient,
+      emailGroups,
     } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, message } = form;
     return (
       <ThemeProvider theme={Theme}>
-        <FormStyles onSubmit={this.handleTemplateSubmission} method="POST">
+        <FormStyles>
           <ResponseContainer />
           <Selector
             name="templateSelector"
@@ -144,7 +150,13 @@ class Form extends React.Component {
           <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
             Message
           </TextArea>
-          <StyledBtn isAnimated className="submit-button" category="positive" type="submit">
+          <StyledBtn
+            isAnimated
+            onClick={this.handleTemplateSubmission}
+            className="submit-button"
+            category="positive"
+            type="submit"
+          >
             Submit
           </StyledBtn>
         </FormStyles>
