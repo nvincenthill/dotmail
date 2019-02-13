@@ -6,6 +6,7 @@ const RecipientContainer = styled.div`
   margin: 1rem auto;
   padding: 0.75rem;
   align-self: center;
+  align-items: center;
   justify-content: center;
   display: grid;
   box-shadow: ${({ theme }) => theme.elevations.med};
@@ -18,14 +19,13 @@ const RecipientContainer = styled.div`
     'add       cancel';
   grid-gap: 0.5rem;
   ${Below.small`
-    grid-template-columns: 15rem;
+    grid-template-columns: 7rem 7rem;
     grid-template-areas:
-      "firstName"
-      "lastName"
-      "preferred"
-      "email"
-      "add"
-      "cancel";
+      "firstName firstName"
+      "lastName lastName"
+      "preferred preferred"
+      "email email"
+      "add cancel";
   `}
 `;
 
