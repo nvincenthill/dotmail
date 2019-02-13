@@ -12,7 +12,8 @@ const HeaderStyles = styled.div`
   justify-content: space-between;
 
   img {
-    max-width: 25%;
+    max-width: 20vw;
+    max-height: 15vw;
   }
 
   div {
@@ -34,6 +35,8 @@ const HeaderStyles = styled.div`
 
   .logo-container {
     flex: 1;
+    display: flex;
+    justify-content: left;
   }
 
   .title {
@@ -44,6 +47,11 @@ const HeaderStyles = styled.div`
     flex-flow: column wrap;
     img {
       max-width: 25vw;
+      max-height: 30vw;
+    }
+
+    .logo-container {
+      justify-content: center;
     }
   `}
 `;
