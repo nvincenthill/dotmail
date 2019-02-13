@@ -30,6 +30,8 @@ module.exports = {
         const injections = {
           ...recipients[i],
           ...form,
+          // TODO: Refactor injection handling
+          ...form.injections,
           senderName: currentUser.name,
           senderEmail: currentUser.email,
         };
