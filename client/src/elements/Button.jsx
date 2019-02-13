@@ -10,38 +10,46 @@ const ButtonStyles = styled.button`
   color: ${({ theme }) => theme.colors.accentColor1};
   box-shadow: ${({ theme }) => theme.elevations.med};
   transition: all 0.5s ease;
+  grid-area: ${({ area }) => area || ''};
+  font-size: ${({ fontSize }) => fontSize || '0.75rem'};
   cursor: pointer;
 
   :focus {
     outline: none;
   }
 
-  span {
-    display: inline-block;
-    position: relative;
-    transition: all 0.5s ease;
-  }
-
-  span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: -0.06rem;
-    right: 0.05rem;
-  }
-
   :hover {
     box-shadow: ${({ theme }) => theme.elevations.high};
   }
 
-  :hover span {
-    padding-right: 1rem;
-  }
+  ${({ isAnimated }) => {
+    if (isAnimated) {
+      return css`
+        span {
+          display: inline-block;
+          position: relative;
+          transition: all 0.5s ease;
+        }
 
-  :hover span:after {
-    opacity: 1;
-    right: 0;
-  }
+        span:after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: -0.06rem;
+          right: 0.05rem;
+        }
+
+        :hover span {
+          padding-right: 1rem;
+        }
+
+        :hover span:after {
+          opacity: 1;
+          right: 0;
+        }
+      `;
+    }
+  }}};
 
   ${({ category }) => {
     if (category === 'cancel') {
