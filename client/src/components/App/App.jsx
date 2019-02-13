@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import base, { firebaseApp, db } from '../base';
+import { firebaseApp, db } from '../base';
 
 import GlobalStyle from '../../Global';
 import FormContainer from '../../containers/FormContainer';
 import HeaderContainer from '../../containers/HeaderContainer';
-import ResponseContainer from '../../containers/ResponseContainer';
 import Footer from '../Footer/Footer';
 import { Theme } from '../../utilities';
 
@@ -158,7 +157,6 @@ class App extends React.Component {
           <GlobalStyle />
           <AppStyles>
             <HeaderContainer authenticate={this.authenticate} logOut={this.logOut} />
-            <ResponseContainer />
             <FormContainer />
             <Footer />
           </AppStyles>

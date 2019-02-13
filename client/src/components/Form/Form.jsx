@@ -6,6 +6,7 @@ import Recipients from '../Recipients/Recipients';
 import { CustomInput, StyledBtn } from '../../elements';
 import Selector from './Selector';
 import TextArea from './TextArea';
+import ResponseContainer from '../../containers/ResponseContainer';
 
 import { Theme } from '../../utilities';
 
@@ -13,7 +14,7 @@ const FormStyles = styled.form`
   display: inline-block;
   flex-flow: column nowrap;
   background: #eee;
-  padding: 1rem 2rem 2rem 2rem;
+  padding: 0 2rem 2rem 2rem;
 
   .submit-button {
     width: 50vw;
@@ -107,6 +108,7 @@ class Form extends React.Component {
     return (
       <ThemeProvider theme={Theme}>
         <FormStyles onSubmit={this.handleTemplateSubmission} method="POST">
+          <ResponseContainer />
           <Selector
             name="templateSelector"
             value={value}
