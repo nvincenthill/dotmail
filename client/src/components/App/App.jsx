@@ -28,14 +28,14 @@ class App extends React.Component {
     this.writeUserData = this.writeUserData.bind(this);
   }
 
-  getDataFromFirestore() {
-    this.getTemplates();
-    this.getEmailGroups();
+  getDataFromFirestore(uid) {
+    this.getTemplates(uid);
+    this.getEmailGroups(uid);
   }
 
-  getTemplates() {
+  getTemplates(uid) {
     const { addTemplate } = this.props;
-    const templatesRef = db.collection('templates');
+    const templatesRef = db.collection('users').doc(uid).collection('templates');
 
     // TODO: Only get templates that match authenticated user's role
     templatesRef
@@ -54,9 +54,9 @@ class App extends React.Component {
       });
   }
 
-  getEmailGroups() {
+  getEmailGroups(uid) {
     const { addEmailGroup } = this.props;
-    const emailGroupsRef = db.collection('emailGroups');
+    const emailGroupsRef = db.collection('users').doc(uid).collection('emailGroups').orderBy('id');
 
     emailGroupsRef
       .get()
@@ -65,23 +65,10 @@ class App extends React.Component {
           console.log('No matching documents.');
           return;
         }
-
         snapshot.forEach((doc) => {
           const group = doc.data();
-          group.recipients = [];
-          doc.ref
-            .collection('recipients')
-            .get()
-            .then((recipientSnapshot) => {
-              if (recipientSnapshot.empty) {
-                console.log('No matching documents.');
-                return;
-              }
-              recipientSnapshot.forEach((contact) => {
-                group.recipients.push(contact.data());
-              });
-            });
-
+          const { recipients } = doc.data();
+          group.recipients = recipients;
           addEmailGroup(group);
         });
       })
@@ -116,7 +103,7 @@ class App extends React.Component {
     // clear examples and fetch data from db
     deleteTemplates();
     deleteEmailGroups();
-    this.getDataFromFirestore();
+    this.getDataFromFirestore(authData.user.uid);
   }
 
   async logOut() {

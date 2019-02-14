@@ -34,25 +34,31 @@ class Form extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target;
-    const { updateField, updateDisplayedTemplate, templates } = this.props;
+    const {
+      updateField, updateDisplayedTemplate, templates, emailGroups,
+    } = this.props;
 
     switch (name) {
       case 'templateSelector':
         updateDisplayedTemplate({ ...templates[value] });
         break;
       case 'recipientGroupSelector':
-        this.handleEmailGroupSelection(value);
+        emailGroups.forEach((group) => {
+          if (group.id.toString() === value) {
+            this.handleEmailGroupSelection(group);
+          }
+        });
         break;
       default:
         updateField({ value, field: name });
     }
   }
 
-  handleEmailGroupSelection(value) {
-    const { deleteRecipients, addRecipient, emailGroups } = this.props;
+  handleEmailGroupSelection(group) {
+    const { deleteRecipients, addRecipient } = this.props;
     deleteRecipients();
-    for (let i = 0; i < emailGroups[value].recipients.length; i += 1) {
-      addRecipient(emailGroups[value].recipients[i]);
+    for (let i = 0; i < group.recipients.length; i += 1) {
+      addRecipient(group.recipients[i]);
     }
   }
 
