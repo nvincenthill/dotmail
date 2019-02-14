@@ -86,7 +86,6 @@ class Header extends React.Component {
       </StyledBtn>
     );
     const { currentUser } = this.props;
-    console.log('testing');
 
     return (
       <HeaderStyles>
