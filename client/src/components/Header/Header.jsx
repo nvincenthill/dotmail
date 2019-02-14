@@ -7,6 +7,7 @@ import { Below } from '../../utilities';
 
 const HeaderStyles = styled.div`
   display: flex;
+  width: 100%;
   padding: 1rem;
   align-items: center;
   justify-content: space-between;
