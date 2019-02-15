@@ -8,11 +8,38 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-All dependencies listing in `package.json`
+All dependencies listing in `package.json`.
+
+Create a firebase project for authentication and database. This project currently uses nodemailer SMTP connection to gmail.com send email and thus requires a Gmail account to operate.
+
+Create a folder named `data` in the root directory to store MJML templates to transpile, inject, and send. See below for `example.mjml`:
+
+```
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello World</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+```
+
+Create a .env in the root directory with the following:
+
+```
+EMAIL='YOUR_EMAIL_ADDRESS_HERE'
+PASS='YOUR_EMAIL_PASSWORD_HERE'
+PORT=3000
+NAME='John Smith'
+FIREBASE_API_KEY='YOUR_API_KEY_HERE'
+FIREBASE_AUTH_DOMAIN='YOUR_AUTH_DOMAIN_HERE'
+FIREBASE_DB_URL='YOUR_DB_URL_HERE'
+FIREBASE_PROJECT_ID='YOUR_PROJECT_ID_HERE'
+```
 
 ### Installing
-
-A step by step series of examples that tell you how to get a development env running
 
 To install dependencies
 
@@ -34,17 +61,50 @@ To run webpack
 npm run react-dev
 ```
 
-## Running the tests
-
 To run tests
 
 ```
 npm test
 ```
 
+## API
+
+To send an email with dotmail just POST to /api/send with well-formed JSON:
+
+```
+curl -d 'EXAMPLE_JSON_BODY' -H "Content-Type: application/json" -X POST http://localhost:3000/api/send
+```
+
+```
+EXAMPLE_JSON_BODY
+
+{
+  "form": {
+    "greeting": "Hi",
+    "id": 0,
+    "injections": { "title": "example title" },
+    "message": "Thanks for using dotmail!",
+    "name": "examplePostRequest",
+    "salutation": "Warm regards,",
+    "subjectLine": "Thank you!",
+    "templateName": "exampleTemplate",
+    "type": "example"
+  },
+  "currentUser": { "name": "John Smith", "email": "example@gmail.com" },
+  "recipients": [
+    {
+      "firstName": "exampleFirstName",
+      "lastName": "exampleLastName",
+      "preferred": "examplePreferredName",
+      "email": "exampleRecipientAddress@gmail.com"
+    }
+  ]
+}
+```
+
 ## Deployment
 
-Not currently deployed - http://dotmail.tech
+Not currently deployed - http://dotmail.tech is our application's future home!
 
 ## Built With
 
