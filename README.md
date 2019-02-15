@@ -8,9 +8,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-All dependencies listing in `package.json`.
+All dependencies listed in `package.json`.
 
-Create a firebase project for authentication and database. This project currently uses nodemailer SMTP connection to gmail.com send email and thus requires a Gmail account to operate.
+Create a firebase project for authentication and user data permanence. This project currently uses nodemailer SMTP connection to gmail.com send email and thus requires a Gmail account to operate.
 
 Create a folder named `data` in the root directory to store MJML templates to transpile, inject, and send. See below for `example.mjml`:
 
@@ -32,7 +32,7 @@ Create a .env in the root directory with the following:
 EMAIL='YOUR_EMAIL_ADDRESS_HERE'
 PASS='YOUR_EMAIL_PASSWORD_HERE'
 PORT=3000
-NAME='John Smith'
+NAME='YOUR_NAME_HERE'
 FIREBASE_API_KEY='YOUR_API_KEY_HERE'
 FIREBASE_AUTH_DOMAIN='YOUR_AUTH_DOMAIN_HERE'
 FIREBASE_DB_URL='YOUR_DB_URL_HERE'
@@ -69,7 +69,7 @@ npm test
 
 ## API
 
-To send an email with dotmail just POST to /api/send with well-formed JSON:
+To send an email with dotmail just POST to `/api/send` with well-formed JSON:
 
 ```
 curl -d 'EXAMPLE_JSON_BODY' -H "Content-Type: application/json" -X POST http://localhost:3000/api/send
