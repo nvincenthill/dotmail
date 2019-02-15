@@ -31,6 +31,9 @@ describe('GET', () => {
     .then((response) => {
       expect(response.statusCode).toBe(404);
     }));
+  it('should respond with status code 200 to a valid GET request', () => request(app)
+    .get('/api/send')
+    .expect(200));
 });
 
 describe('POST', () => {
