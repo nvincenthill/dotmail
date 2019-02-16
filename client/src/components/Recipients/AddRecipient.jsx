@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { StyledBtn } from '../../elements';
 import RecipientContainer from './RecipientContainer';
@@ -113,5 +114,11 @@ class AddRecipient extends Component {
     );
   }
 }
+
+AddRecipient.propTypes = {
+  addRecipient: PropTypes.func.isRequired,
+  cancelRecipient: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default AddRecipient;
