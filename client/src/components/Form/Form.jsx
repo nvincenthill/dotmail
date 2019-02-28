@@ -50,6 +50,7 @@ class Form extends React.Component {
         });
         break;
       default:
+        // TODO: refactor to handle injection names/shapes/types
         updateField({ value, field: name });
     }
   }
@@ -116,7 +117,7 @@ class Form extends React.Component {
       emailGroups,
     } = this.props;
     const { name } = currentUser;
-    const { value, subjectLine, message } = form;
+    const { value, subjectLine, injections } = form;
     return (
       <ThemeProvider theme={Theme}>
         <FormStyles>
@@ -153,9 +154,18 @@ class Form extends React.Component {
           >
             Subject
           </CustomInput>
-          <TextArea name="message" rows="5" value={message} onChange={this.handleChange}>
-            Message
-          </TextArea>
+          {injections.map(injection => (
+            // TODO: Handle different types of injections, connect onChange handler to redux store
+            <TextArea
+              key={injection.name}
+              name={injection.name}
+              rows="5"
+              value={injection.data}
+              onChange={this.handleChange}
+            >
+              {injection.name}
+            </TextArea>
+          ))}
           <StyledBtn
             isAnimated
             onClick={this.handleTemplateSubmission}
