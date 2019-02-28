@@ -7,6 +7,7 @@ import { Below } from '../../utilities';
 
 const HeaderStyles = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 1rem;
   align-items: center;
@@ -47,8 +48,8 @@ const HeaderStyles = styled.div`
   ${Below.small`
     flex-flow: column wrap;
     img {
-      max-width: 25vw;
-      max-height: 30vw;
+      max-height: 10vh;
+      max-width: none;
     }
 
     .logo-container {
