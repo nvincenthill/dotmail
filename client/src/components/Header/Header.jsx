@@ -94,7 +94,7 @@ class Header extends React.Component {
           <img id="logo" src="/assets/emailbot.png" alt="logo did not load" />
         </div>
         <div className="title-container">
-          <h1 className="title">EMAILBOT</h1>
+          <h1 className="title">dotmail.tech</h1>
         </div>
         <div className="button-container">
           {currentUser.isUserAuthenticated ? logOutButton : logInButton}
