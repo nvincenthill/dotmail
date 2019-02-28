@@ -12,7 +12,6 @@ module.exports = {
     const emailCreator = new EmailCreator(process.env.EMAIL);
     const emailSender = new EmailSender(transporter);
 
-    // * handle data/error validation
     if (!recipients || !currentUser.email) {
       sendError(true, res, 'ERROR: Invalid sender or recipient(s)!');
       return;
@@ -27,18 +26,19 @@ module.exports = {
       const transmissions = [];
 
       for (let i = 0; i < recipients.length; i += 1) {
-        const injections = {
+        const variablesToInject = {
           ...recipients[i],
-          ...form,
-          // TODO: Refactor injection handling
-          ...form.injections,
+          subjectLine: form.subjectLine,
           senderName: currentUser.name,
           senderEmail: currentUser.email,
         };
+        form.injections.forEach((injection) => {
+          variablesToInject[injection.name] = injection.data;
+        });
         const mail = emailCreator.create(
           recipients[i].email,
           form.subjectLine,
-          injectVariablesIntoTemplate(html, injections),
+          injectVariablesIntoTemplate(html, variablesToInject),
           form.message,
         );
         const transmission = emailSender.send(mail);
