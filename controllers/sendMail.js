@@ -17,7 +17,7 @@ module.exports = {
       return;
     }
 
-    transpiler.transpile(`data/${form.templateName}.mjml`, (error, html, descriptionOfError) => {
+    transpiler.transpile(`data/${form.id}.mjml`, (error, html, descriptionOfError) => {
       if (error) {
         sendError(error, res, descriptionOfError);
         return;
