@@ -7,6 +7,7 @@ import {
   removeRecipient,
   updateResponse,
   deleteRecipients,
+  updateInjection,
 } from '../actions/actions';
 
 const mapStateToProps = state => ({
@@ -35,6 +36,9 @@ const mapDispatchToProps = dispatch => ({
   },
   removeRecipient: (q) => {
     dispatch(removeRecipient(q));
+  },
+  updateInjection: (q) => {
+    dispatch(updateInjection(q));
   },
 });
 
