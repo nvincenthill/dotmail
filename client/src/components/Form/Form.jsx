@@ -55,6 +55,19 @@ class Form extends React.Component {
     }
   }
 
+  handleInjectionChange(e, index) {
+    const { value } = e.target;
+    const {
+      updateInjection, form,
+    } = this.props;
+    const newInjection = {
+      name: form.injections[index].name,
+      type: form.injections[index].type,
+      data: value,
+    };
+    updateInjection({ index, newInjection });
+  }
+
   handleEmailGroupSelection(group) {
     const { deleteRecipients, addRecipient } = this.props;
     deleteRecipients();
@@ -68,7 +81,10 @@ class Form extends React.Component {
     const {
       form, currentUser, recipients, updateResponse,
     } = this.props;
+
+    /* eslint-disable */
     const result = confirm(`Are you sure you want to send emails to ${recipients.length} people?`);
+    /* eslint-enable */
 
     if (!result) {
       return;
@@ -118,6 +134,18 @@ class Form extends React.Component {
     } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, injections } = form;
+    const injectionInputs = injections.map((injection, index) => (
+      // TODO - build radio button component
+      <TextArea
+        key={injection.name}
+        name={injection.name}
+        rows="5"
+        value={form.injections[index].data}
+        onChange={(e) => { this.handleInjectionChange(e, index); }}
+      >
+        {injection.name}
+      </TextArea>
+    ));
     return (
       <ThemeProvider theme={Theme}>
         <FormStyles>
@@ -154,18 +182,7 @@ class Form extends React.Component {
           >
             Subject
           </CustomInput>
-          {injections.map(injection => (
-            // TODO: Handle different types of injections, connect onChange handler to redux store
-            <TextArea
-              key={injection.name}
-              name={injection.name}
-              rows="5"
-              value={injection.data}
-              onChange={this.handleChange}
-            >
-              {injection.name}
-            </TextArea>
-          ))}
+          {injectionInputs}
           <StyledBtn
             isAnimated
             onClick={this.handleTemplateSubmission}
@@ -188,6 +205,7 @@ Form.propTypes = {
   addRecipient: PropTypes.func.isRequired,
   deleteRecipients: PropTypes.func.isRequired,
   removeRecipient: PropTypes.func.isRequired,
+  updateInjection: PropTypes.func.isRequired,
   form: PropTypes.instanceOf(Object).isRequired,
   currentUser: PropTypes.instanceOf(Object).isRequired,
   templates: PropTypes.instanceOf(Object).isRequired,
