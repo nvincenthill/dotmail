@@ -6,6 +6,7 @@ import Recipients from '../Recipients/Recipients';
 import { CustomInput, StyledBtn } from '../../elements';
 import Selector from './Selector';
 import TextArea from './TextArea';
+import Radio from './Radio';
 import ResponseContainer from '../../containers/ResponseContainer';
 
 import { Theme } from '../../utilities';
@@ -50,16 +51,13 @@ class Form extends React.Component {
         });
         break;
       default:
-        // TODO: refactor to handle injection names/shapes/types
         updateField({ value, field: name });
     }
   }
 
   handleInjectionChange(e, index) {
     const { value } = e.target;
-    const {
-      updateInjection, form,
-    } = this.props;
+    const { updateInjection, form } = this.props;
     const newInjection = {
       name: form.injections[index].name,
       type: form.injections[index].type,
@@ -134,18 +132,44 @@ class Form extends React.Component {
     } = this.props;
     const { name } = currentUser;
     const { value, subjectLine, injections } = form;
-    const injectionInputs = injections.map((injection, index) => (
-      // TODO - build radio button component
-      <TextArea
-        key={injection.name}
-        name={injection.name}
-        rows="5"
-        value={form.injections[index].data}
-        onChange={(e) => { this.handleInjectionChange(e, index); }}
-      >
-        {injection.name}
-      </TextArea>
-    ));
+    const injectionInputs = injections.map((injection, index) => {
+      let component;
+      switch (injection.type) {
+        case 'text':
+          component = (
+            <TextArea
+              key={injection.name}
+              name={injection.name}
+              rows="5"
+              value={injection.data}
+              onChange={(e) => {
+                this.handleInjectionChange(e, index);
+              }}
+            >
+              {injection.name}
+            </TextArea>
+          );
+          break;
+        case 'radio':
+          component = (
+            <Radio
+              key={injection.name}
+              name={injection.name.toUpperCase()}
+              value="true"
+              onChange={(e) => {
+                this.handleInjectionChange(e, index);
+              }}
+              options={injection.options}
+            >
+              {injection.name}
+            </Radio>
+          );
+          break;
+        default:
+          component = <h4>Error, injection type missing</h4>;
+      }
+      return component;
+    });
     return (
       <ThemeProvider theme={Theme}>
         <FormStyles>
