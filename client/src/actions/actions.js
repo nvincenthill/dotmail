@@ -86,3 +86,11 @@ export function deleteEmailGroups() {
     type: types.DELETE_EMAIL_GROUPS,
   };
 }
+
+export function updateInjection({ index, newInjection }) {
+  return {
+    type: types.UPDATE_INJECTION,
+    index,
+    injection: newInjection,
+  };
+}
