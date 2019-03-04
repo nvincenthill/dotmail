@@ -15,19 +15,20 @@ const StyledTitle = styled.p`
   text-transform: capitalize;
 `;
 
-const Radio = ({ children, options, ...otherProps }) => (
+const Radio = ({ children, injection, ...otherProps }) => (
   <StyledLabel htmlFor={children}>
     <StyledTitle>{children}</StyledTitle>
-    {options.map((option, index) => {
+    {injection.options.map((option) => {
       const optionStr = option.toString();
+      const checked = injection.data.toString() === optionStr;
       return (
-        <StyledRadioContainer>
+        <StyledRadioContainer key={optionStr}>
           <input
-            key={index}
             id={optionStr}
             name={children}
             value={optionStr}
             type="radio"
+            checked={checked}
             {...otherProps}
           />
           {optionStr}

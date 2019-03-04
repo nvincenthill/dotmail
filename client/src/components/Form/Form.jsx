@@ -58,9 +58,11 @@ class Form extends React.Component {
   handleInjectionChange(e, index) {
     const { value } = e.target;
     const { updateInjection, form } = this.props;
+    const { name, type, options } = form.injections[index];
     const newInjection = {
-      name: form.injections[index].name,
-      type: form.injections[index].type,
+      name,
+      type,
+      options: options || [],
       data: value,
     };
     updateInjection({ index, newInjection });
@@ -153,13 +155,11 @@ class Form extends React.Component {
         case 'radio':
           component = (
             <Radio
+              injection={injection}
               key={injection.name}
-              name={injection.name.toUpperCase()}
-              value="true"
               onChange={(e) => {
                 this.handleInjectionChange(e, index);
               }}
-              options={injection.options}
             >
               {injection.name}
             </Radio>
