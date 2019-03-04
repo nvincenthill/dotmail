@@ -58,9 +58,15 @@ class Form extends React.Component {
   handleInjectionChange(e, index) {
     const { value } = e.target;
     const { updateInjection, form } = this.props;
-    const { name, type, options } = form.injections[index];
+    const {
+      displayName,
+      name,
+      type,
+      options,
+    } = form.injections[index];
     const newInjection = {
       name,
+      displayName,
       type,
       options: options || [],
       data: value,
@@ -148,7 +154,7 @@ class Form extends React.Component {
                 this.handleInjectionChange(e, index);
               }}
             >
-              {injection.name}
+              {injection.displayName}
             </TextArea>
           );
           break;
@@ -161,7 +167,7 @@ class Form extends React.Component {
                 this.handleInjectionChange(e, index);
               }}
             >
-              {injection.name}
+              {injection.displayName}
             </Radio>
           );
           break;
