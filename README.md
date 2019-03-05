@@ -37,6 +37,8 @@ FIREBASE_API_KEY='YOUR_API_KEY_HERE'
 FIREBASE_AUTH_DOMAIN='YOUR_AUTH_DOMAIN_HERE'
 FIREBASE_DB_URL='YOUR_DB_URL_HERE'
 FIREBASE_PROJECT_ID='YOUR_PROJECT_ID_HERE'
+SMTPUSERNAME='YOUR_AWS_SMTP_USERNAME_HERE'
+SMTPPASSWORD='YOUR_AWS_SMTP_PASSWORD_HERE'
 ```
 
 ### Installing
@@ -80,16 +82,18 @@ EXAMPLE_JSON_BODY
 
 {
   "form": {
-    "greeting": "Hi",
     "id": 0,
-    "injections": { "title": "example title" },
-    "message": "Thanks for using dotmail!",
-    "name": "examplePostRequest",
-    "salutation": "Warm regards,",
-    "subjectLine": "Thank you!",
-    "templateName": "exampleTemplate",
-    "type": "example"
-  },
+    "name": "Example",
+    "type": "universal",
+    "subjectLine": "Example subject line",
+    "injections": [
+      {
+        "name": "exampleInjection",
+        "type": "text",
+        "data": "This is an example"
+      }
+    ]
+},
   "currentUser": { "name": "John Smith", "email": "example@gmail.com" },
   "recipients": [
     {
@@ -110,11 +114,20 @@ Not currently deployed - http://dotmail.tech is our application's future home!
 
 - [Firebase](https://firebase.google.com/) - The OAuth and real-time database
 - [React.js](https://reactjs.org/) - The front-end MVC framework
+- [Redux](https://redux.js.org/) - The state management
 - [Express](https://expressjs.com/) - The server
 - [Node.js](https://nodejs.org/) - The back-end
+- [Mustache](https://mustache.github.io/) - The logic-less template system
+- [MJML](https://mjml.io/) - The framework that makes responsive email easy
 - [Jest](https://jestjs.io/) - The testing framework
 - [Enzyme](https://airbnb.io/enzyme/) - The testing utilities
 - [SuperTest](https://github.com/visionmedia/supertest/) - The http integration testing
+
+## Deployed With
+
+- [Docker](https://www.docker.com/) - The package/container management
+- [AWS SES](https://aws.amazon.com/ses/) - The flexible and highly-scalable email sending and receiving platform
+- [AWS EC2](https://aws.amazon.com/ec2/) - The secure and resizable compute capacity in the cloud
 
 ## Versioning
 
