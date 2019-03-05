@@ -10,7 +10,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node data/seedFirestore.js",
+    "seed": "node data/seedUserData.js",
     "test": "jest"
   },
   "jest": {
