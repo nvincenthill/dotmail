@@ -12,7 +12,7 @@ const StyledRadioContainer = styled.div`
 `;
 
 const StyledTitle = styled.p`
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 `;
 
 const Radio = ({ children, injection, ...otherProps }) => (

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { StyledLabel } from '../../elements';
 
 const StyledTitle = styled.p`
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 `;
 
 const TextArea = ({
