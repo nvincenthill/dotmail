@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   templates: state.templatesReducer,
   recipients: state.recipientsReducer,
   emailGroups: state.emailGroupsReducer,
-  currentUser: { name: state.userReducer.name, email: state.userReducer.email },
+  currentUser: state.userReducer,
 });
 
 const mapDispatchToProps = dispatch => ({
