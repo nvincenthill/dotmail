@@ -15,7 +15,8 @@ const FormStyles = styled.div`
   display: inline-block;
   flex-flow: column nowrap;
   background: #eee;
-  padding: 0 2rem 2rem 2rem;
+  padding: .5rem 2rem 2rem 2rem;
+  border-radius: 2rem 2rem 0 0;
 
   .submit-button {
     width: 50%;

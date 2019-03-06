@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.background};
+    background: ${({ theme }) => theme.colors.accentColor1};
     text-align: center;
     margin: 0;
   }
@@ -51,25 +51,25 @@ const GlobalStyle = createGlobalStyle`
 
   ${Above.small`
     body {
-      background: ${({ theme }) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.accentColor1};
     }
   `}
 
   ${Above.med`
     body {
-      background: ${({ theme }) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.accentColor1};
     }
   `}
 
   ${Above.large`
     body {
-      background: ${({ theme }) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.accentColor1};
     }
   `}
 
   ${Above.xlarge`
     body {
-      background: ${({ theme }) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.accentColor1};
     }
   `}
 `;

@@ -14,7 +14,7 @@ import { Theme } from '../../utilities';
 
 const AppStyles = styled.div`
   padding: 1rem 1.5rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: linear-gradient(white, #eee);
 `;
 
 class App extends React.Component {

@@ -13,9 +13,14 @@ const HeaderStyles = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  img {
-    max-width: 20vw;
-    max-height: 15vw;
+  #logo {
+    max-width: 35vw;
+    max-height: 35vw;
+    opacity: 0.95;
+    transform: rotate(45deg);
+    position: absolute;
+    left: -11vw;
+    top: 0;
   }
 
   div {
