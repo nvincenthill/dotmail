@@ -31,6 +31,7 @@ class App extends React.Component {
   getDataFromFirestore(uid) {
     this.getTemplates(uid);
     this.getEmailGroups(uid);
+    this.getUserInformation(uid);
   }
 
   getTemplates(uid) {
@@ -40,7 +41,6 @@ class App extends React.Component {
       .doc(uid)
       .collection('templates');
 
-    // TODO: Only get templates that match authenticated user's role
     templatesRef
       .get()
       .then((snapshot) => {
@@ -84,6 +84,30 @@ class App extends React.Component {
       });
   }
 
+  getUserInformation(uid) {
+    const { updateUser, currentUser } = this.props;
+    const userRef = db.collection('users').doc(uid);
+    userRef
+      .get()
+      .then((doc) => {
+        if (!doc.exists) {
+          console.log('No such document!');
+        } else {
+          const userInfo = doc.data();
+          updateUser({
+            name: currentUser.name,
+            email: currentUser.email,
+            uid,
+            isUserAuthenticated: true,
+            ...userInfo,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log('Error getting document', err);
+      });
+  }
+
   authenticate(provider) {
     const authProvider = new firebase.auth[`${provider}AuthProvider`]();
     firebaseApp
@@ -104,7 +128,6 @@ class App extends React.Component {
       // TODO: handle existing user
     } else {
       // TODO: handle new user
-      this.writeUserData();
     }
 
     // clear examples and fetch data from db
@@ -123,6 +146,10 @@ class App extends React.Component {
       email: '',
       uid: '',
       isUserAuthenticated: false,
+      role: '',
+      AWSAccessKeyId: '',
+      AWSSecretKey: '',
+      useAWSSES: false,
     });
     deleteTemplates();
     deleteEmailGroups();
@@ -163,6 +190,7 @@ class App extends React.Component {
 App.propTypes = {
   addTemplate: PropTypes.func.isRequired,
   addEmailGroup: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
   currentUser: PropTypes.instanceOf(Object).isRequired,
 };
 
