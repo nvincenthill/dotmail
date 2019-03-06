@@ -9,7 +9,14 @@ export function updateDisplayedTemplate(form) {
 }
 
 export function updateUser({
-  name, email, uid, isUserAuthenticated,
+  name,
+  email,
+  uid,
+  isUserAuthenticated,
+  role,
+  AWSAccessKeyId,
+  AWSSecretKey,
+  useAWSSES,
 }) {
   return {
     type: types.UPDATE_USER,
@@ -17,6 +24,10 @@ export function updateUser({
     email,
     uid,
     isUserAuthenticated,
+    role,
+    AWSAccessKeyId,
+    AWSSecretKey,
+    useAWSSES,
   };
 }
 
