@@ -1,15 +1,22 @@
-const transporter = require('./transporter');
 const { sendError, injectVariablesIntoTemplate } = require('./helpers');
-
 const MJMLTranspiler = require('./MJMLTranspiler');
 const EmailSender = require('./EmailSender');
 const EmailCreator = require('./EmailCreator');
+const Transport = require('./Transport');
 
 module.exports = {
   sendMail: (req, res) => {
     const { form, recipients, currentUser } = req.body;
     const transpiler = new MJMLTranspiler();
-    const emailCreator = new EmailCreator(process.env.EMAIL);
+    const emailCreator = new EmailCreator(currentUser.email);
+    const transport = new Transport(currentUser.useAWSSES);
+    const transporter = transport.create(
+      null,
+      null,
+      currentUser.AWSAccessKeyId,
+      currentUser.AWSSecretKey,
+      'us-east-1',
+    );
     const emailSender = new EmailSender(transporter);
 
     if (!recipients || !currentUser.email) {
