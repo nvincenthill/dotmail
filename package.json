@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "aws-sdk": "^2.414.0",
     "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
