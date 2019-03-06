@@ -35,7 +35,10 @@ class App extends React.Component {
 
   getTemplates(uid) {
     const { addTemplate } = this.props;
-    const templatesRef = db.collection('users').doc(uid).collection('templates');
+    const templatesRef = db
+      .collection('users')
+      .doc(uid)
+      .collection('templates');
 
     // TODO: Only get templates that match authenticated user's role
     templatesRef
@@ -56,7 +59,11 @@ class App extends React.Component {
 
   getEmailGroups(uid) {
     const { addEmailGroup } = this.props;
-    const emailGroupsRef = db.collection('users').doc(uid).collection('emailGroups').orderBy('id');
+    const emailGroupsRef = db
+      .collection('users')
+      .doc(uid)
+      .collection('emailGroups')
+      .orderBy('id');
 
     emailGroupsRef
       .get()
@@ -136,15 +143,15 @@ class App extends React.Component {
       });
   }
 
-  // TODO: Render components conditionally based on authStatus
   render() {
+    const { currentUser } = this.props;
     return (
       <ThemeProvider theme={Theme}>
         <React.Fragment>
           <GlobalStyle />
           <AppStyles>
             <HeaderContainer authenticate={this.authenticate} logOut={this.logOut} />
-            <FormContainer />
+            {currentUser.isUserAuthenticated && <FormContainer />}
             <Footer />
           </AppStyles>
         </React.Fragment>
@@ -156,6 +163,7 @@ class App extends React.Component {
 App.propTypes = {
   addTemplate: PropTypes.func.isRequired,
   addEmailGroup: PropTypes.func.isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default App;
