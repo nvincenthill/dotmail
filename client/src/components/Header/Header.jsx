@@ -18,7 +18,7 @@ const HeaderStyles = styled.div`
     max-height: 35vw;
     opacity: 0.95;
     transform: rotate(45deg);
-    position: absolute;
+    position: fixed;
     left: -11vw;
     top: 0;
   }
@@ -50,15 +50,15 @@ const HeaderStyles = styled.div`
     margin: 1rem;
   }
 
-  ${Below.small`
-    flex-flow: column wrap;
-    img {
-      max-height: 10vh;
-      max-width: none;
+  ${Below.med`
+    #logo {
+      left: -8vw;
     }
+  `}
 
-    .logo-container {
-      justify-content: center;
+  ${Below.small`
+    #logo {
+      display: none;
     }
   `}
 `;
