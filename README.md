@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 All dependencies listed in `package.json`.
 
-Create a firebase project for authentication and user data permanence. This project currently uses nodemailer SMTP connection to gmail.com send email and thus requires a Gmail account to operate.
+Create a firebase project for authentication and user data permanence. This project currently supports Nodemailer SMTP connection to gmail.com or AWS SES send email and thus requires a Gmail account or AWS account with a non-sandboxed SES to operate.
 
 Create a folder named `data` in the root directory to store MJML templates to transpile, inject, and send. See below for `example.mjml`:
 
@@ -19,7 +19,7 @@ Create a folder named `data` in the root directory to store MJML templates to tr
   <mj-body>
     <mj-section>
       <mj-column>
-        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello World</mj-text>
+        <mj-text font-size="20px" color="red">Hello World</mj-text>
       </mj-column>
     </mj-section>
   </mj-body>
@@ -126,7 +126,9 @@ Not currently deployed - http://dotmail.tech is our application's future home!
 
 ## Versioning
 
-We use [Git](https://git-scm.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [Git](https://git-scm.com/) for versioning.
+
+**Our Trello Board** - [Check out what we're working on next](https://trello.com/b/PdQwFo3v/emailbot)
 
 ## Authors
 
@@ -135,8 +137,6 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 - **Fernando De La Madrid** - [Fernando De La Madrid](https://github.com/ferdelamad/)
 
 - **Josh Elder** - [Josh Elder](https://github.com/jcelder/)
-
-**Our Trello Board** - [Check out what we're working on next](https://trello.com/b/PdQwFo3v/emailbot)
 
 ## License
 
