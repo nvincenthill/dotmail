@@ -136,8 +136,6 @@ We use [Git](https://git-scm.com/) for versioning.
 
 - **Fernando De La Madrid** - [Fernando De La Madrid](https://github.com/ferdelamad/)
 
-- **Josh Elder** - [Josh Elder](https://github.com/jcelder/)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
