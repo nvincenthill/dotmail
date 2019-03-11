@@ -8,6 +8,7 @@ import Selector from './Selector';
 import TextArea from './TextArea';
 import Radio from './Radio';
 import ResponseContainer from '../../containers/ResponseContainer';
+import Preview from '../Preview/Preview';
 
 import { Theme } from '../../utilities';
 
@@ -28,10 +29,12 @@ const FormStyles = styled.div`
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { isPreviewDisplayed: false, previewHTML: '<div>HTML not found</div>' };
     this.handleChange = this.handleChange.bind(this);
     this.handleTemplateSubmission = this.handleTemplateSubmission.bind(this);
     this.handleEmailGroupSelection = this.handleEmailGroupSelection.bind(this);
+    this.handlePreviewSubmission = this.handlePreviewSubmission.bind(this);
+    this.closePreview = this.closePreview.bind(this);
   }
 
   handleChange(e) {
@@ -81,6 +84,48 @@ class Form extends React.Component {
     for (let i = 0; i < group.recipients.length; i += 1) {
       addRecipient(group.recipients[i]);
     }
+  }
+
+  handlePreviewSubmission(e) {
+    e.preventDefault();
+    const {
+      form, currentUser, recipients,
+    } = this.props;
+
+    function postData(url = '', data = {}) {
+      return fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+        body: JSON.stringify(data),
+      }).then(response => response.json());
+    }
+
+    const protocol = 'http';
+    const domain = 'localhost';
+    const port = 3000;
+    const endpoint = '/api/preview';
+    const url = `${protocol}://${domain}:${port}${endpoint}`;
+    const emailData = {
+      form,
+      currentUser,
+      recipients,
+    };
+    postData(url, emailData)
+      .then(response => this.setState({ previewHTML: response.html, isPreviewDisplayed: true }))
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  closePreview() {
+    this.setState({ isPreviewDisplayed: false })
   }
 
   handleTemplateSubmission(e) {
@@ -223,6 +268,16 @@ class Form extends React.Component {
           >
             Submit
           </StyledBtn>
+          <StyledBtn
+            isAnimated
+            onClick={this.handlePreviewSubmission}
+            className="submit-button"
+            category="positive"
+            type="submit"
+          >
+            Preview
+          </StyledBtn>
+          {this.state.isPreviewDisplayed && <Preview html={this.state.previewHTML} closePreview={this.closePreview} />}
         </FormStyles>
       </ThemeProvider>
     );
