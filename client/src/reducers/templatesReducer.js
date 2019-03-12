@@ -3,13 +3,26 @@ import { ADD_TEMPLATE, DELETE_TEMPLATES } from '../actions/actionTypes';
 const initialState = [
   {
     id: 0,
-    templateName: 'example',
     name: 'Example',
     type: 'universal',
     subjectLine: 'Example subject line',
-    greeting: 'Example greeting',
-    message: 'Example message',
-    salutation: 'Example salutation',
+    injections: [
+      {
+        name: 'exampleInjection',
+        type: 'text',
+        data: 'This is an example',
+      },
+    ],
+    mjml: `
+    <mjml>
+      <mj-body>
+        <mj-section>
+          <mj-column>
+            <mj-text font-size="20px" color="red">Hello World</mj-text>
+          </mj-column>
+        </mj-section>
+      </mj-body>
+    </mjml>`,
   },
 ];
 
