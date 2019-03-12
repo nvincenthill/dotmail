@@ -26,43 +26,37 @@ module.exports = {
 
     // TODO - Implement programmatic MJML generation
 
-    transpiler.transpile(`data/${form.id}.mjml`, (error, html, descriptionOfError) => {
-      if (error) {
-        sendError(error, res, descriptionOfError);
-        return;
-      }
+    const html = transpiler.transpile(form.mjml);
+    const transmissions = [];
 
-      const transmissions = [];
+    for (let i = 0; i < recipients.length; i += 1) {
+      const variablesToInject = {
+        ...recipients[i],
+        subjectLine: form.subjectLine,
+        senderName: currentUser.name,
+        senderEmail: currentUser.email,
+      };
+      form.injections.forEach((injection) => {
+        variablesToInject[injection.name] = injection.data;
+      });
+      const mail = emailCreator.create(
+        recipients[i].email,
+        form.subjectLine,
+        injectVariablesIntoTemplate(html, variablesToInject),
+        form.message,
+      );
+      const transmission = emailSender.send(mail);
+      transmissions.push(transmission);
+    }
 
-      for (let i = 0; i < recipients.length; i += 1) {
-        const variablesToInject = {
-          ...recipients[i],
-          subjectLine: form.subjectLine,
-          senderName: currentUser.name,
-          senderEmail: currentUser.email,
-        };
-        form.injections.forEach((injection) => {
-          variablesToInject[injection.name] = injection.data;
+    Promise.all(transmissions)
+      .then(() => {
+        res.json({
+          message: 'Successfully sent email(s)!',
         });
-        const mail = emailCreator.create(
-          recipients[i].email,
-          form.subjectLine,
-          injectVariablesIntoTemplate(html, variablesToInject),
-          form.message,
-        );
-        const transmission = emailSender.send(mail);
-        transmissions.push(transmission);
-      }
-
-      Promise.all(transmissions)
-        .then(() => {
-          res.json({
-            message: 'Successfully sent email(s)!',
-          });
-        })
-        .catch((err) => {
-          sendError(err, res, 'Failed to send email(s)');
-        });
-    });
+      })
+      .catch((err) => {
+        sendError(err, res, 'Failed to send email(s)');
+      });
   },
 };

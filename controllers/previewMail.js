@@ -11,25 +11,20 @@ module.exports = {
       return;
     }
 
-    transpiler.transpile(`data/${form.id}.mjml`, (error, html, descriptionOfError) => {
-      if (error) {
-        sendError(error, res, descriptionOfError);
-        return;
-      }
+    const html = transpiler.transpile(form.mjml);
 
-      const variablesToInject = {
-        ...recipients[0],
-        subjectLine: form.subjectLine,
-        senderName: currentUser.name,
-        senderEmail: currentUser.email,
-      };
-      form.injections.forEach((injection) => {
-        variablesToInject[injection.name] = injection.data;
-      });
-      const injectedHTML = injectVariablesIntoTemplate(html, variablesToInject);
-      res.json({
-        html: injectedHTML,
-      });
+    const variablesToInject = {
+      ...recipients[0],
+      subjectLine: form.subjectLine,
+      senderName: currentUser.name,
+      senderEmail: currentUser.email,
+    };
+    form.injections.forEach((injection) => {
+      variablesToInject[injection.name] = injection.data;
+    });
+    const injectedHTML = injectVariablesIntoTemplate(html, variablesToInject);
+    res.json({
+      html: injectedHTML,
     });
   },
 };
