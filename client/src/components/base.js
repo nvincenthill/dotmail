@@ -1,4 +1,3 @@
-import Rebase from 're-base';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -10,7 +9,5 @@ const firebaseApp = firebase.initializeApp({
 });
 
 const db = firebase.firestore();
-const base = Rebase.createClass(db);
 
 export { firebaseApp, db };
-export default base;

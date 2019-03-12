@@ -46,7 +46,6 @@
     "nodemailer": "^5.1.1",
     "npm": "^6.2.0",
     "prop-types": "^15.6.2",
-    "re-base": "^4.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-fontawesome": "^1.6.1",
