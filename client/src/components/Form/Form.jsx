@@ -19,10 +19,20 @@ const FormStyles = styled.div`
   padding: .5rem 2rem 2rem 2rem;
   border-radius: 2rem 2rem 0 0;
 
+  .submit-button-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .submit-button {
     width: 50%;
-    margin: 0 auto;
+    margin: 1rem auto;
     background: ${({ theme }) => theme.colors.accentColor4};
+  }
+
+  .preview-button {
+    width: 50%;
+    margin: 1rem auto;
   }
 `;
 
@@ -125,7 +135,7 @@ class Form extends React.Component {
   }
 
   closePreview() {
-    this.setState({ isPreviewDisplayed: false })
+    this.setState({ isPreviewDisplayed: false });
   }
 
   handleTemplateSubmission(e) {
@@ -222,6 +232,8 @@ class Form extends React.Component {
       }
       return component;
     });
+
+    const { isPreviewDisplayed, previewHTML } = this.state;
     return (
       <ThemeProvider theme={Theme}>
         <FormStyles>
@@ -259,25 +271,25 @@ class Form extends React.Component {
             Subject
           </CustomInput>
           {injectionInputs}
-          <StyledBtn
-            isAnimated
-            onClick={this.handleTemplateSubmission}
-            className="submit-button"
-            category="positive"
-            type="submit"
-          >
-            Submit
-          </StyledBtn>
-          <StyledBtn
-            isAnimated
-            onClick={this.handlePreviewSubmission}
-            className="submit-button"
-            category="positive"
-            type="submit"
-          >
-            Preview
-          </StyledBtn>
-          {this.state.isPreviewDisplayed && <Preview html={this.state.previewHTML} closePreview={this.closePreview} />}
+          <div className="submit-button-container">
+            <StyledBtn
+              isAnimated
+              className="preview-button"
+              onClick={this.handlePreviewSubmission}
+            >
+              Preview
+            </StyledBtn>
+            <StyledBtn
+              isAnimated
+              onClick={this.handleTemplateSubmission}
+              className="submit-button"
+              category="positive"
+              type="submit"
+            >
+              Submit
+            </StyledBtn>
+          </div>
+          {isPreviewDisplayed && <Preview html={previewHTML} closePreview={this.closePreview} />}
         </FormStyles>
       </ThemeProvider>
     );
