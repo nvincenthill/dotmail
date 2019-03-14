@@ -43,7 +43,7 @@ module.exports = {
         recipients[i].email,
         form.subjectLine,
         injectVariablesIntoTemplate(html, variablesToInject),
-        form.message,
+        'The responsive HTML content of this email could not be viewed - please check your browser settings or contact the sender. Thanks!',
       );
       const transmission = emailSender.send(mail);
       transmissions.push(transmission);
