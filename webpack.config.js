@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((acc, el) => {
@@ -34,5 +35,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  plugins: [new webpack.DefinePlugin(envKeys)],
+  plugins: [new webpack.DefinePlugin(envKeys), new BundleAnalyzerPlugin()],
 };
