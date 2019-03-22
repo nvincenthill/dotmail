@@ -118,7 +118,7 @@ class Form extends React.Component {
     }
 
     const protocol = 'http';
-    const domain = 'localhost';
+    const domain = process.env.DOMAIN;
     const port = 3000;
     const endpoint = '/api/preview';
     const url = `${protocol}://${domain}:${port}${endpoint}`;
@@ -168,7 +168,7 @@ class Form extends React.Component {
     }
 
     const protocol = 'http';
-    const domain = 'localhost';
+    const domain = process.env.DOMAIN;
     const port = 3000;
     const endpoint = '/api/send';
     const url = `${protocol}://${domain}:${port}${endpoint}`;
