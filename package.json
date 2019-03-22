@@ -11,7 +11,8 @@
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "seed": "node data/seedUserData.js",
-    "test": "jest"
+    "test": "jest",
+    "prod-start": "node server/index.js"
   },
   "jest": {
     "collectCoverage": true,
