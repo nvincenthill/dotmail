@@ -12,7 +12,8 @@
     "react-dev": "webpack -d --watch",
     "seed": "node data/seedUserData.js",
     "test": "jest",
-    "prod-start": "node server/index.js"
+    "prod-start": "node server/index.js",
+    "build": "webpack -d"
   },
   "jest": {
     "collectCoverage": true,
