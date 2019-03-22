@@ -117,17 +117,13 @@ class Form extends React.Component {
       }).then(response => response.json());
     }
 
-    const protocol = 'http';
-    const domain = process.env.DOMAIN;
-    const port = 3000;
     const endpoint = '/api/preview';
-    const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
       currentUser,
       recipients,
     };
-    postData(url, emailData)
+    postData(endpoint, emailData)
       .then(response => this.setState({ previewHTML: response.html, isPreviewDisplayed: true }))
       .catch((error) => {
         console.log(error);
@@ -167,17 +163,13 @@ class Form extends React.Component {
       }).then(response => response.json());
     }
 
-    const protocol = 'http';
-    const domain = process.env.DOMAIN;
-    const port = 3000;
     const endpoint = '/api/send';
-    const url = `${protocol}://${domain}:${port}${endpoint}`;
     const emailData = {
       form,
       currentUser,
       recipients,
     };
-    postData(url, emailData)
+    postData(endpoint, emailData)
       .then(response => updateResponse(response))
       .catch((error) => {
         console.log(error);
