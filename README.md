@@ -103,7 +103,7 @@ EXAMPLE_JSON_BODY
 
 ## Deployment
 
-Not currently deployed - http://dotmail.tech is our application's future home!
+http://dotmail.tech is our application's home!
 
 ## Built With
 
